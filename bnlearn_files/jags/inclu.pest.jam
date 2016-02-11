@@ -1,0 +1,9 @@
+model {
+  PR ~ dcat(p.PR);
+  CL ~ dbeta(a.CL, b.CL);
+  G1 ~ dpois(CL * g.G1[PR]);
+  G2 ~ dpois(G1 * k.G2);
+  TR ~ dbern(ilogit((G1 - m.TR)/s.TR));
+  x.LO <- G2 * (1 - (1 - r.LO) * TR);
+  LO ~ dnchisqr(d.LO, x.LO);
+}

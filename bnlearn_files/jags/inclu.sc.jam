@@ -1,0 +1,4 @@
+model {
+  csup ~ dcat(sp);
+  cdiam ~ dnorm(mu[csup], 1/sigma^2);
+}

@@ -1,0 +1,6 @@
+model {
+  lambda ~ dchisqr(kd);
+  xx ~ dpois(lambda);
+  sup <- 1 + step(xx - kt);
+  diam ~ dgamma(kr[sup], kl[sup]);
+}

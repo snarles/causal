@@ -1,0 +1,4 @@
+model {
+  dsex ~ dcat(sp[]);
+  dwei ~ dcat(dsw[, dsex]);
+}
