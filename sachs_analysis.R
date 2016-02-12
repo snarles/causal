@@ -73,18 +73,42 @@ pairs(log(sachs_all), pch = ".", col = rgb(0,0,0,0.1))
 dev.off()
 
 ###
-#
+#  p38 Jnk | PKA, PKC
 ###
 
-fm <- log(PKA) ~ log(Mek); control <- c("Mek", "PKA", "PKC")
+fm <- log(p38) ~ log(Jnk); control <- c("PKA", "PKC")
 layout(1); par(mar = c(5.1, 4.1, 4.1, 2.1))
-plot(fm, data = sachs0)
+plot(fm, data = sachs_all, pch = ".")
 
-cl <- kmeans(sachs0[, control], 9)$cluster
-layout(matrix(1:9, 3, 3))
+cl <- kmeans(sachs_all[, control], 20)$cluster
+layout(matrix(1:20, 5, 4))
 par(mar = c(2, 2, 2, 2))
 for (i in 1:max(cl)) {
-  plot(fm, data = sachs0[cl==i, ])
+  plot(fm, data = sachs_all[cl==i, ], pch = ".")
 }
 
+###
+#  Mek Akt | PKA, Erk
+###
+
+n <- dim(sachs_all)[1]
+
+fm <- log(Mek) ~ log(Akt); control <- c("PKA", "Erk")
+layout(1); par(mar = c(5.1, 4.1, 4.1, 2.1))
+plot(fm, data = sachs_all, pch = ".")
+
+cor(log(Mek), log(Akt))
+
+lm(log(Mek) ~ log(Akt) + log(PKA) + log(Erk), data = sachs_all)
+
+lineId::zattach(sachs_all)
+sc <- -0.2722 * log(PKA) -0.7791 * log(Erk)
+sc <- floor(20 * order(sc)/n) + 1
+
+layout(matrix(1:20, 5, 4))
+par(mar = c(2, 2, 2, 2))
+for (i in 1:max(cl)) {
+  plot(fm, data = sachs_all[sc==i, ], pch = "o", col = rgb(0,0,0,0.1))
+  print(cor(log(Mek)[sc==i], log(Akt)[sc==i]))
+}
 
