@@ -73,6 +73,82 @@ png("images/sachs_analysis_pairs2.png", width=1000, height=1000)
 pairs(log(sachs_all), pch = ".", col = rgb(0,0,0,0.1))
 dev.off()
 
+####
+##  DIAGRAMS GROUP 1: Effect of interventions
+####
+
+subsample <- function(dat, p = 0.3) {
+  dat[sample(dim(dat)[1], floor(dim(dat)[1]*p), replace = FALSE), ]
+}
+
+plot1 <- function(fmla, data, ...) plot(fmla, data = data,
+                                        ylim = yl, xlim = xl, col = col0, ...)
+plot2 <- function(fmla, data, fn = plot, ...) fn(fmla, data = data,
+                                                 ylim = yl, xlim = xl, ...)
+
+col0 <- rgb(0, 0, 0, 0.8)
+col3 <- hsv(h = (1:3)/3, s = 1, v = 1, 0.8)
+
+triplot <- function(fmla, dat) {
+  par(bg = grey(0.3))
+  plot2(fmla, dat[[1]], col = col3[1])
+  plot2(fmla, dat[[2]], col = col3[2], fn = points)
+  plot2(fmla, dat[[3]], col = col3[3], fn = points)
+  plot2(fmla, subsample(dat[[2]], 0.4), col = col3[1], fn = points)
+  plot2(fmla, subsample(dat[[2]], 0.3), col = col3[2], fn = points)
+  plot2(fmla, subsample(dat[[2]], 0.2), col = col3[3], fn = points)
+}
+
+###
+# Raf vs Erk
+# C1 == C3 != C6
+# Not a good example since Raf also changes
+###
+
+yl <- c(0, 6); xl <- c(0, 9)
+par(bg = "white")
+plot1(log(Erk) ~ log(Raf), sachs_ints[[1]], main = "Control")
+plot1(log(Erk) ~ log(Raf), sachs_ints[[3]], main = "Akt-")
+plot1(log(Erk) ~ log(Raf), sachs_ints[[6]], main = "Mek-")
+
+triplot(log(Erk) ~ log(Raf), sachs_ints[c(1,3,6)])
+
+
+###
+# PIP3 vs PIP2
+# C1 == C3 != C5
+# Ok!
+###
+
+yl <- c(0, 8); xl <- c(0, 8)
+par(bg = "white")
+fmla <- log(PIP2) ~ log(PIP3)
+plot1(fmla, sachs_ints[[1]], main = "Control")
+plot1(fmla, sachs_ints[[3]], main = "Akt-")
+plot1(fmla, sachs_ints[[5]], main = "PIP2-")
+
+triplot(fmla, sachs_ints[c(1,3,5)])
+
+###
+#  PKC vs Akt
+#  C0 =? C8 =? C9
+#  Actually, no visible diffs
+###
+
+yl <- c(0, 9); xl <- c(0, 7)
+par(bg = "white")
+fmla <- log(Akt) ~ log(PKC)
+plot1(fmla, sachs[[1+0]], main = "Control")
+plot1(fmla, sachs[[1+8]], main = "PKC+")
+plot1(fmla, sachs[[1+9]], main = "PKA+")
+
+triplot(fmla, sachs[1 + c(0,8,9)])
+
+
+####
+##  DIAGRAMS: CONDITIONAL INDEPENDENCE PLOTS
+####
+
 ###
 #  p38 Jnk | PKA, PKC
 ###
