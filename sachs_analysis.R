@@ -153,9 +153,14 @@ triplot(fmla, sachs[1 + c(0,8,9)])
 #  p38 Jnk | PKA, PKC
 ###
 
-fm <- log(p38) ~ log(Jnk); control <- c("PKA", "PKC")
+zattach(sachs_all)
+par(bg = "white")
+fm <- log(p38) ~ log(Jnk); control <- c("PKA", "PKC"); cf <- log(PKA) ~ log(PKC)
 layout(1); par(mar = c(5.1, 4.1, 4.1, 2.1))
 plot(fm, data = sachs_all, pch = ".")
+plot(cf, data = sachs_all, pch = ".")
+
+w1 <- getwind()
 
 cl <- kmeans(sachs_all[, control], 20)$cluster
 layout(matrix(1:20, 5, 4))
