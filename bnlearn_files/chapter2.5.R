@@ -80,3 +80,10 @@ graphviz.plot(bn.wh, layout = "dot")
 graphviz.plot(bn.tiers, layout = "dot")
 graphviz.plot(bn.mbde, layout = "dot")
 
+####
+##  My own extra stuff
+####
+
+isachs = read.table("bnlearn_files/sachs.interventional.txt",
+                    header = TRUE, colClasses = "factor")
+
