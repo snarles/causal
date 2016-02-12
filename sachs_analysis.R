@@ -157,17 +157,14 @@ zattach(sachs_all)
 par(bg = "white")
 fm <- log(p38) ~ log(Jnk); control <- c("PKA", "PKC"); cf <- log(PKA) ~ log(PKC)
 layout(1); par(mar = c(5.1, 4.1, 4.1, 2.1))
-plot(fm, data = sachs_all, pch = ".")
-plot(cf, data = sachs_all, pch = ".")
 
+layout(1)
+marginal_plot()
+## subplots
+layout(matrix(1:3, 1, 3))
 w1 <- getwind()
-
-cl <- kmeans(sachs_all[, control], 20)$cluster
-layout(matrix(1:20, 5, 4))
-par(mar = c(2, 2, 2, 2))
-for (i in 1:max(cl)) {
-  plot(fm, data = sachs_all[cl==i, ], pch = ".")
-}
+condition_w(w1)
+condition_w(w1, marginal = TRUE)
 
 ###
 #  Mek Akt | PKA, Erk
