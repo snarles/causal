@@ -64,7 +64,57 @@ for (i in 1:10) hist(log(sachs[[i]]$Mek), main = paste(i))
 layout(matrix(1:12, 4, 3))
 for (i in 1:10) hist(log(sachs[[i]]$PLCg), main = paste(i))
 
+###
+#  Raf and p38 CI?
+#  not a good example...
+###
+
+layout(1); par(mar = c(5.1, 4.1, 4.1, 2.1))
+plot(log(Raf) ~ log(p38), data = sachs0)
+n <- dim(sachs0)[1]
+plot(log(Raf) ~ log(p38), data = sachs0[floor(5 * order(sachs0$PKC)/n) == 1, ])
+
+###
+#  Jnk and p38 CI?
+###
+#par(bg = "grey")
+#par(bg = "white")
+layout(1); par(mar = c(5.1, 4.1, 4.1, 2.1))
+plot(log(Jnk) ~ log(p38), data = sachs0)
+cl <- kmeans(sachs0[, c("PKA", "PKC")], 9)$cluster
+layout(matrix(1:9, 3, 3))
+par(mar = c(2, 2, 2, 2))
+for (i in 1:max(cl)) {
+  plot(log(Jnk) ~ log(p38), data = sachs0[cl==i, ])
+}
 
 
+###
+#  Erk and p38 CI?
+###
+#par(bg = "grey")
+#par(bg = "white")
+layout(1); par(mar = c(5.1, 4.1, 4.1, 2.1))
+plot(log(Erk) ~ log(p38), data = sachs0)
+layout(matrix(1:9, 3, 3))
+par(mar = c(2, 2, 2, 2))
+for (i in 1:max(cl)) {
+  plot(log(Erk) ~ log(p38), data = sachs0[cl==i, ])
+}
 
 
+###
+#  Erk and Jnk CI?
+###
+#par(bg = "grey")
+#par(bg = "white")
+layout(1); par(mar = c(5.1, 4.1, 4.1, 2.1))
+plot(log(Erk) ~ log(Jnk), data = sachs0)
+layout(matrix(1:9, 3, 3))
+par(mar = c(2, 2, 2, 2))
+for (i in 1:max(cl)) {
+  plot(log(Erk) ~ log(Jnk), data = sachs0[cl==i, ])
+}
+
+
+pairs(log(sachs0), pch = ".")
