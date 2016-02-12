@@ -78,27 +78,6 @@ dev.off()
 ##  DIAGRAMS GROUP 1: Effect of interventions
 ####
 
-subsample <- function(dat, p = 0.3) {
-  dat[sample(dim(dat)[1], floor(dim(dat)[1]*p), replace = FALSE), ]
-}
-
-plot1 <- function(fmla, data, ...) plot(fmla, data = data,
-                                        ylim = yl, xlim = xl, col = col0, ...)
-plot2 <- function(fmla, data, fn = plot, ...) fn(fmla, data = data,
-                                                 ylim = yl, xlim = xl, ...)
-
-col0 <- rgb(0, 0, 0, 0.8)
-col3 <- hsv(h = (1:3)/3, s = 1, v = 1, 0.8)
-
-triplot <- function(fmla, dat) {
-  par(bg = grey(0.3))
-  plot2(fmla, dat[[1]], col = col3[1])
-  plot2(fmla, dat[[2]], col = col3[2], fn = points)
-  plot2(fmla, dat[[3]], col = col3[3], fn = points)
-  plot2(fmla, subsample(dat[[2]], 0.4), col = col3[1], fn = points)
-  plot2(fmla, subsample(dat[[2]], 0.3), col = col3[2], fn = points)
-  plot2(fmla, subsample(dat[[2]], 0.2), col = col3[3], fn = points)
-}
 
 ###
 # Raf vs Erk
@@ -166,4 +145,36 @@ layout(matrix(1:3, 1, 3))
 w1 <- getwind()
 condition_w(w1)
 condition_w(w1, marginal = TRUE)
+
+####
+##  DIAGRAMS: INVARIANCE
+####
+
+###
+# p38 | PKC, PKA invariant under perturbation C1 vs C2
+# Nope, not invariant!
+###
+
+layout(1)
+fmla <- log(p38) ~ log(PKC) + log(PKA)
+dat1 <- sachs_ints[[6]]
+dat2 <- sachs_ints[[9]]
+yX1 <- model.frame(fmla, data = dat1)
+yX2 <- model.frame(fmla, data = dat2)
+y1 <- yX1[, 1]
+y2 <- yX2[, 1]
+X1 <- yX1[, -1]
+X2 <- yX2[, -1]
+Xa1 <- data.frame(cbind(y = y1, quadd(X1)))
+Xa2 <- data.frame(cbind(y = y2, quadd(X2)))
+res1 <- lm(y ~ ., data = Xa1)
+res2 <- lm(y ~ ., data = Xa2)
+yh11 <- predict(res1, Xa1)
+yh21 <- predict(res1, Xa2)
+yh12 <- predict(res2, Xa1)
+yh22 <- predict(res2, Xa2)
+
+layout(matrix(1:2, 1, 2))
+plot(yh11, yh12); abline(0, 1, col = "red")
+plot(yh21, yh22); abline(0, 1, col = "red")
 

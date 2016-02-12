@@ -1,4 +1,31 @@
 ####
+##  Code used for triplots
+####
+
+
+subsample <- function(dat, p = 0.3) {
+  dat[sample(dim(dat)[1], floor(dim(dat)[1]*p), replace = FALSE), ]
+}
+
+plot1 <- function(fmla, data, ...) plot(fmla, data = data,
+                                        ylim = yl, xlim = xl, col = col0, ...)
+plot2 <- function(fmla, data, fn = plot, ...) fn(fmla, data = data,
+                                                 ylim = yl, xlim = xl, ...)
+
+col0 <- rgb(0, 0, 0, 0.8)
+col3 <- hsv(h = (1:3)/3, s = 1, v = 1, 0.8)
+
+triplot <- function(fmla, dat) {
+  par(bg = grey(0.3))
+  plot2(fmla, dat[[1]], col = col3[1])
+  plot2(fmla, dat[[2]], col = col3[2], fn = points)
+  plot2(fmla, dat[[3]], col = col3[3], fn = points)
+  plot2(fmla, subsample(dat[[2]], 0.4), col = col3[1], fn = points)
+  plot2(fmla, subsample(dat[[2]], 0.3), col = col3[2], fn = points)
+  plot2(fmla, subsample(dat[[2]], 0.2), col = col3[3], fn = points)
+}
+
+####
 ##  Find small windows with high concentration
 ##  Dedicated to XS--Xie Shuo!!
 ####
@@ -42,3 +69,10 @@ printw <- function(w) {
   cat(paste0("list(x=c(", w$x[1], ",", w$x[2], "),y=c(", w$y[1], ",", w$y[2], "))"))
 }
 
+####
+##  Invariance stuff
+####
+
+quadd <- function(X) {
+  cbind(X, x11 = X[,1]^2, x22 = X[, 2]^2, x12 = X[, 1] * X[, 2])
+}
