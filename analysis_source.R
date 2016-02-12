@@ -6,10 +6,9 @@
 marginal_plot <- function() {
   smoothScatter(fm, pch = 19, cex = 0.3)
   points(fm, pch = ".", col = grey(0, 0.7))
-  cc <- cor(model.frame(fm, data = sachs_all)[filt, ])[1, 2]
+  cc <- cor(model.frame(fm, data = sachs_all))[1, 2]
   cc <- substr(as.character(cc), 1, 5)
   title(paste("R=", cc))
-  print(cor(model.frame(fm, data = sachs_all)[, c(2, 1)])[1, 2])
 }
 
 getwind <- function() {
