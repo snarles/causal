@@ -29,6 +29,7 @@
 ##  Load Sachs data
 ####
 
+source("source.R")
 library(readxl)
 
 sachs0 = read.table("bnlearn_files/sachs.data.txt", header = TRUE)
@@ -105,7 +106,7 @@ cor(log(Mek), log(Akt))
 
 lm(log(Mek) ~ log(Akt) + log(PKA) + log(Erk), data = sachs_all)
 
-lineId::zattach(sachs_all)
+zattach(sachs_all)
 sc <- -0.2722 * log(PKA) -0.7791 * log(Erk)
 sc <- floor(20 * order(sc)/n) + 1
 
@@ -116,3 +117,37 @@ for (i in 1:max(cl)) {
   print(cor(log(Mek)[sc==i], log(Akt)[sc==i]))
 }
 
+###
+#  Mek Akt | PKA, Erk
+###
+
+zattach(sachs_all)
+n <- dim(sachs_all)[1]
+
+v1 <- PKA; v2 <- Erk
+fm <- log(Mek) ~ log(Akt)
+
+## Show the splitting
+
+layout(1); par(mar = c(5.1, 4.1, 4.1, 2.1))
+par(bg = "white")
+plot(log(v2) ~ log(v1), data = sachs_all, pch = "o", col = rgb(0,0,0,0.3))
+c1 <- ceiling(3 * rank(v1, ties.method="random")/n)
+c2 <- ceiling(3 * rank(v2, ties.method="random")/n)
+table(c1, c2)
+abline(max(log(v2)[c2==1]), 0, col = "red")
+abline(max(log(v2)[c2==2]), 0, col = "red")
+abline(v = max(log(v1)[c1==1]), col = "red")
+abline(v = max(log(v1)[c1==2]), col = "red")
+cc <- (4 - c2) + 3 * (c1 - 1)
+
+## Marginal plot
+plot(fm, data = sachs_all, pch = "o", col = rgb(0,0,0,0.3))
+
+## Conditional plots
+layout(matrix(1:9, 3, 3))
+par(mar = c(2, 2, 2, 2))
+for (i in 1:9) {
+  plot(fm, data = sachs_all[cc==i, ], 
+       pch = "o", cex = 0.5, col = rgb(0,0,0,0.3))
+}
