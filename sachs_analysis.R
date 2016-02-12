@@ -95,7 +95,11 @@ n <- dim(sachs_all)[1]
 
 fm <- log(Mek) ~ log(Akt); control <- c("PKA", "Erk")
 layout(1); par(mar = c(5.1, 4.1, 4.1, 2.1))
+par(bg = "grey")
 plot(fm, data = sachs_all, pch = ".")
+for (i in 1:10) {
+  points(fm, data = sachs[[i]], pch = paste(i-1), col = rainbow(10)[i])  
+}
 
 cor(log(Mek), log(Akt))
 
