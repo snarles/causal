@@ -35,7 +35,8 @@ marginal_plot <- function() {
   points(fm, pch = ".", col = grey(0, 0.7))
   cc <- cor(model.frame(fm, data = sachs_all))[1, 2]
   cc <- substr(as.character(cc), 1, 5)
-  title(paste("R=", cc))
+  n <- dim(sachs_all)[1]
+  title(paste("R =", cc), sub = paste("n =", n))
 }
 
 getwind <- function() {
@@ -51,6 +52,19 @@ getwind <- function() {
   xs
 }
 
+plotwind <- function(xs) {
+  plot(cf, data = sachs_all, pch = ".")
+  xs$x <- sort(xs$x); xs$y <- sort(xs$y)
+  polygon(c(xs$x, rev(xs$x)), rep(xs$y, each = 2), border = "red", lwd = 2, col = NA)
+  lala <- model.frame(cf, data = sachs_all)[, c(2, 1)]
+  filt <- (lala[, 1] > xs$x[1] & lala[, 1] < xs$x[2]) & 
+    (lala[, 2] > xs$y[1] & lala[, 2] < xs$y[2])
+  n <- sum(filt)
+  title(paste("n =", n))
+  points(lala[filt, ], pch = ".", col = rgb(1, 0, 0, 0.9))
+  xs
+}
+
 condition_w <- function(w, marginal = FALSE, ...) {
   lala <- model.frame(cf, data = sachs_all)[, c(2, 1)]
   filt <- (lala[, 1] > w$x[1] & lala[, 1] < w$x[2]) & 
@@ -61,7 +75,7 @@ condition_w <- function(w, marginal = FALSE, ...) {
     smoothScatter(fm, pch = ".")
     points(fm, data = sachs_all[filt, ], pch = 19, cex = 0.4)
   } else {
-    plot(fm, data = sachs_all[filt, ], main = paste("R=", cc), ...)
+    plot(fm, data = sachs_all[filt, ], pch = 19, cex = 0.4, main = paste("R =", cc), ...)
   }
 }
 
