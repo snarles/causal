@@ -176,28 +176,52 @@ yh21 <- predict(res1, Xa2)
 yh12 <- predict(res2, Xa1)
 yh22 <- predict(res2, Xa2)
 
+r11 <- y1 - yh11; r12 <- y1 - yh12
+r21 <- y2 - yh21; r22 <- y2 - yh22
+
+
 layout(matrix(1:2, 1, 2))
 plot(yh11, yh12); abline(0, 1, col = "red")
 plot(yh21, yh22); abline(0, 1, col = "red")
 
+layout(matrix(1:2, 1, 2))
+plot(r11, r12); abline(0, 1, col = "red")
+plot(r21, r22); abline(0, 1, col = "red")
+
+
 ###
-# PKA | Akt, Mek NOT invariant under perturbation C1 vs C2 vs C3
+# Mek | Raf, Erk, PKA NOT invariant under perturbation C2, C4
 ###
 
 layout(1)
-fmla <- log(PKA) ~ log(Jnk) + log(Mek) + log(Raf) + log(p38) + log(PKC)
-dat1 <- subsample(sachs_ints[[1]], 0.5)
-dat2 <- subsample(sachs_ints[[3]], 0.5)
+fmla <- log(Mek) ~ log(Raf) + log(Erk) + log(PKA)
+summary(lm(fmla, data = sachs_all))
+
+summary(lm(fmla, data = sachs_ints[[1]]))
+summary(lm(fmla, data = sachs_ints[[2]]))
+summary(lm(fmla, data = sachs_ints[[3]]))
+summary(lm(fmla, data = sachs_ints[[4]]))
+summary(lm(fmla, data = sachs_ints[[5]]))
+summary(lm(fmla, data = sachs_ints[[6]]))
+summary(lm(fmla, data = sachs_ints[[7]]))
+summary(lm(fmla, data = sachs_ints[[8]]))
+summary(lm(fmla, data = sachs_ints[[9]]))
+
+# pairs(sachs_ints[[1]], pch = ".")
+
+dat1 <- subsample(sachs_ints[[2]], 0.5)
+dat2 <- subsample(sachs_ints[[4]], 0.5)
+# dat1 <- sachs_ints[[1]]
 yX1 <- model.frame(fmla, data = dat1)
 yX2 <- model.frame(fmla, data = dat2)
 y1 <- yX1[, 1]
 y2 <- yX2[, 1]
 X1 <- yX1[, -1]
 X2 <- yX2[, -1]
-# Xa1 <- data.frame(cbind(y = y1, quadd(X1)))
-# Xa2 <- data.frame(cbind(y = y2, quadd(X2)))
-Xa1 <- data.frame(cbind(y = y1, X1))
-Xa2 <- data.frame(cbind(y = y2, X2))
+Xa1 <- data.frame(cbind(y = y1, quadd(X1)))
+Xa2 <- data.frame(cbind(y = y2, quadd(X2)))
+# Xa1 <- data.frame(cbind(y = y1, X1))
+# Xa2 <- data.frame(cbind(y = y2, X2))
 res1 <- lm(y ~ ., data = Xa1)
 res2 <- lm(y ~ ., data = Xa2)
 yh11 <- predict(res1, Xa1)
@@ -205,6 +229,14 @@ yh21 <- predict(res1, Xa2)
 yh12 <- predict(res2, Xa1)
 yh22 <- predict(res2, Xa2)
 
+r11 <- y1 - yh11; r12 <- y1 - yh12
+r21 <- y2 - yh21; r22 <- y2 - yh22
+
+
 layout(matrix(1:2, 1, 2))
 plot(yh11, yh12); abline(0, 1, col = "red")
 plot(yh21, yh22); abline(0, 1, col = "red")
+
+layout(matrix(1:2, 1, 2))
+plot(r11, r12); abline(0, 1, col = "red")
+plot(r21, r22); abline(0, 1, col = "red")
