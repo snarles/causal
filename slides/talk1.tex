@@ -681,6 +681,38 @@ Causal relationships in a system represented by a graph.  The graph tells you:
 \section{Statistical Methods}
 \sectionpage
 
+
+\begin{frame}
+\frametitle{Estimating Causal Effects}
+\begin{center}
+\includegraphics[scale = 0.5]{../images/cyto_result_cropped3.png}
+\end{center}
+
+\begin{itemize}
+\item Suppose we want to reduce the expression level of PKC in the cell.  We have a treatment (an enzyme) which can inhibit PIP2-- what would be the \emph{treatment effect}
+\[
+\E[PKC | do(PIP2)] - \E[PKC] = ?
+\]
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}
+\begin{itemize}
+\item \emph{Controlled experiment.} Do an experiment where we randomize the treatment, estimate the treatment effect using the difference
+\[
+\text{mean of the treated} - \text{mean of the controls}
+\]
+\item \emph{Observational data.}  We observe that the enzyme we are considering is sometimes expressed in the cell naturally.  Can we estimate the treatment effect even without having done a controlled experiment?
+\begin{itemize}
+\item \emph{Potential outcomes approach.} (By Rubin et al.)  Match treated and untreated observations using \emph{propensity scores.}  Optional: sensitivity analyses.
+\item \emph{Graphical approach.}  (Pearl et al.)  Supposing we know the structure of the graph (or we can try to learn it), apply \emph{calculus of interventions.}
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+
 \section{Conclusions}
 \sectionpage
 
