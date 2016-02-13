@@ -105,9 +105,9 @@
   \let\set@color\beamerorig@set@color
   \let\reset@color\beamerorig@reset@color}
 \makeatother
-\definecolor{color1}{RGB}{128,13,13}
-\definecolor{color2}{RGB}{70,128,13}
-\definecolor{color3}{RGB}{13,128,128}
+\definecolor{color1}{RGB}{128,0,0}
+\definecolor{color2}{RGB}{0,128,0}
+\definecolor{color3}{RGB}{0,0,128}
 \definecolor{color4}{RGB}{70,13,128}
 
 %tikz stufff
@@ -226,7 +226,7 @@ Motivation for graphical lasso.
 \begin{frame}
 \frametitle{Causality and experiments}
 \begin{center}
-\includegraphics[scale = 0.5]{../images/fig02_01.png}
+\includegraphics[scale = 0.5]{../images/fig01_01.png}
 \end{center}
 
 \begin{itemize}
@@ -240,7 +240,7 @@ Motivation for graphical lasso.
 \frametitle{Causality and experiments}
 
 \begin{center}
-\includegraphics[scale = 0.5]{../images/fig02_02.png}
+\includegraphics[scale = 0.5]{../images/fig01_02.png}
 \end{center}
 
 \begin{itemize}
@@ -250,6 +250,181 @@ Motivation for graphical lasso.
 
 \end{frame}
 
+\begin{frame}
+\frametitle{Principle I: Which variables are affected.}
+
+\begin{center}
+\includegraphics[scale = 0.5]{../images/fig01_03.png}
+\hspace{0.5in}
+\includegraphics[scale = 0.5]{../images/fig01_02.png}
+\end{center}
+
+\begin{itemize}
+\item If we \emph{inhibit} Akt, no other variables should be affected.
+\item If we \emph{inhibit} PIP2, then we may not only change the distribution of PIP2, but also PIP3.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Principle I: Which variables are affected.}
+
+\begin{center}
+\includegraphics[scale = 0.5]{../images/plot01_01.pdf}
+\end{center}
+
+Looking at Sachs data.
+
+Joint distribution of PIP2 and PIP3 in the ``control'' case.
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Principle I: Which variables are affected.}
+
+\begin{center}
+\includegraphics[scale = 0.5]{../images/plot01_02.pdf}
+\end{center}
+
+Joint distribution of PIP2 and PIP3 when we intervene on Akt.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Principle I: Which variables are affected.}
+
+\begin{center}
+\includegraphics[scale = 0.5]{../images/plot01_03.pdf}
+\end{center}
+
+Joint distribution of PIP2 and PIP3 when we intervene on PIP2.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Principle I: Which variables are affected.}
+
+\begin{center}
+\includegraphics[scale = 0.5]{../images/plot01_04.pdf}
+\end{center}
+
+\begin{center}
+\sethlcolor{color3}
+\textbf{\textcolor{white}{\SoulColor\hl{ Control }}},
+\sethlcolor{color1}
+\textbf{\textcolor{white}{\SoulColor\hl{ PIP2- }}}, 
+\sethlcolor{color2}
+\textbf{\textcolor{white}{\SoulColor\hl{ Akt- }}}
+\end{center}
+
+Intervening on PIP2 also affects the distribution of PIP3,
+while intervening on Akt does not (drastically) change the distribution.
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Principle II: Conditional independence.}
+
+\begin{center}
+\includegraphics[scale = 0.5]{../images/fig03_01.png}
+\end{center}
+
+\begin{itemize}
+\item Surprisingly, the structure of the causal graph implies certain \emph{conditional independence} relationships.
+\item This allows the potential to infer causal relationships from observational data.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Principle II: Conditional independence.}
+
+\begin{center}
+\includegraphics[scale = 0.5]{../images/fig03_02.png}
+\end{center}
+
+\begin{itemize}
+\item Two variables are independent conditional on their common parents.
+\item Conditioning on PKC and PKA, Jnk and p38 should be independent.
+\end{itemize}
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Principle II: Conditional independence.}
+
+\begin{center}
+\includegraphics[scale = 0.5]{../images/fig03_03.png}
+\end{center}
+
+\begin{itemize}
+\item ``Once you and I condition on common factors, we are left with nothing in common.''
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Principle II: Conditional independence.}
+
+\begin{center}
+\includegraphics[scale = 0.5]{../images/plot03_01.pdf}
+\end{center}
+
+Marginally, p38 and Jnk are correlated.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Principle II: Conditional independence.}
+
+\begin{center}
+\includegraphics[scale = 0.7]{../images/plot03_02.pdf}
+\end{center}
+
+We can't condition on PKA and PKC since the data is continuous.
+But, conditioning on small windows seems to reduce association.
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Principle II: Conditional independence.}
+
+\begin{center}
+\includegraphics[scale = 0.7]{../images/plot03_03.pdf}
+\end{center}
+
+\emph{Left:} We condition on (PKA, PKC) to lie within the indicated window.
+\emph{Center:} Conditional joint distribution of (Jnk, p38).
+\emph{Right:} Conditional join distribution, overlaid on marginal distribution.
+\end{frame}
+
+\begin{frame}
+\frametitle{Principle II: Conditional independence.}
+
+\begin{center}
+\includegraphics[scale = 0.7]{../images/plot03_04.pdf}
+\end{center}
+
+PKA and PKC \emph{explain away} some (if not all) of the association between Jnk and p38.
+(Recall that R = 0.608 marginally.)
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Principle III: Predictive invariance.}
+
+\begin{center}
+\includegraphics[scale = 0.5]{../images/plot04_01.pdf}
+\end{center}
+
+A principle brought to attention by a recent paper by the ``Zurich group'' (Peters Meinshausen, Buhlmann).
+
+\end{frame}
 
 
 \begin{frame}

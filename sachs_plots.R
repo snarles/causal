@@ -65,7 +65,7 @@ dev.off()
 
 yl <- c(0, 9); xl <- c(0, 7)
 par(bg = "white")
-fmla <- log(Akt) ~ log(PKC)
+fmla <- log(Akt) ~ log(PKA)
 pdfcmd("plot02_01.pdf")
 plot1(fmla, sachs[[1+0]], main = "Control")
 dev.off()
