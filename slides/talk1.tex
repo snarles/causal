@@ -512,6 +512,163 @@ In contrast, $\{PKA, Mek, Erf\}$ is \emph{not} an invariant set for $Raf$ since:
 
 
 \begin{frame}
+\frametitle{Predictive Invariance: Example}
+\begin{center}
+\begin{tikzpicture}[node distance = 2mm and 20mm]
+\tikzstyle{main} = [circle, minimum size = 12mm, thick, draw = black!80]
+\tikzstyle{connect} = [-latex, thick]
+  \node[main] (x) {$X$};
+  \node[main, right=of x] (y) {$Y$};
+  \node[main, right=of y] (z) {$Z$};
+\path (x) edge [connect] (y) (y) edge [connect] (z);
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+\item Suppose we are trying to predict $Y$.
+\item $X \sim N(0, a)$.
+\item $Y|X \sim N(X, b)$.
+\item $Z|Y \sim N(Y, c).$
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Predictive Invariance: Example}
+\begin{center}
+\begin{tikzpicture}[node distance = 2mm and 20mm]
+\tikzstyle{main} = [circle, minimum size = 12mm, thick, draw = black!80]
+\tikzstyle{connect} = [-latex, thick]
+  \node[main] (x) {$X$};
+  \node[main, right=of x] (y) {$Y$};
+  \node[main, right=of y] (z) {$Z$};
+\path (x) edge [connect] (y) (y) edge [connect] (z);
+\end{tikzpicture}
+\[X \sim N(0, a),\ Y|X \sim N(X, b),\ Z|Y \sim N(Y, c).\]
+\end{center}
+\begin{itemize}
+\item We can intervene by adding noise to $X$ = changing $a \to a'$.
+\item Intervene by injecting noise to $Z$ = changing $c \to c'$.
+\item Consider a linear model which predicts $Y$ given $X$ and $Z$.
+\item \emph{Is the optimal prediction rule invariant under intervention?}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Predictive Invariance: Example}
+\begin{center}
+\[X \to Y \to Z\]
+\[X \sim N(0, a),\ Y|X \sim N(X, b),\ Z|Y \sim N(Y, c).\]
+\end{center}
+
+The joint distribution is 
+\[
+\begin{bmatrix}
+X \\ Y\\Z
+\end{bmatrix}
+\sim
+N\left(
+\begin{bmatrix}
+0 \\ 0 \\ 0
+\end{bmatrix},
+\begin{bmatrix}
+a & a & a \\
+a & a + b & a + b\\
+a & a + b & a + b + c
+\end{bmatrix}
+\right)
+\]
+
+The optimal prediction rule is given by
+\[
+\E[Y|X, Z] = \mu_Y + \Sigma_{Y, XZ}\Sigma_{XZ}^{-1} (X - \mu_X, Z - \mu_Z) = \frac{c}{b + c} X + \frac{b}{b+c} Z.
+\]
+
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Predictive Invariance: Example}
+\begin{center}
+\[X \sim N(0, a),\ Y|X \sim N(X, b),\ Z|Y \sim N(Y, c).\]
+\end{center}
+
+Optimal prediction rule:
+\[
+\E[Y|X, Z] = \underbrace{\frac{c}{b+c}}_{\beta_X} X + \underbrace{\frac{b}{b+c}}_{\beta_Z} Z.
+\]
+
+i.e. $Y$ is a weighted average of $X$ and $Z$ ($\beta_X + \beta_Z = 1$).
+
+\begin{itemize}
+\item Imagine $c$ is very small, i.e. $Z$ = $Y$ + tiny noise.  Then $Z$ is a great predictor of $Y$!  $\beta_Z \approx 1$.
+\item Conversely, if $b$ is small, that means $Y$ = $X$ + tiny noise.  $\beta_X \approx 1$.
+\item If $b = c$, then $\beta_X = \beta_Z = 1/2$.
+\end{itemize}
+
+\end{frame}
+
+
+
+
+
+
+\begin{frame}
+\frametitle{Predictive Invariance: Example}
+
+But is the OLS predictive rule invariant?
+\[
+\E[Y|X, Z] = \frac{c}{b + c} X + \frac{b}{b+c} Z.
+\]
+If we intervene on $Z$, changing $c$ to $c'$, the OLS coefficients change too.
+The model is not invariant.
+
+\begin{center}
+\begin{tikzpicture}[node distance = 2mm and 20mm]
+\tikzstyle{main} = [circle, minimum size = 12mm, thick, draw = black!80]
+\tikzstyle{connect} = [-latex, thick]
+  \node[main] (x) {$X$};
+  \node[main, right=of x] (y) {$Y$};
+  \node[main, right=of y] (z) {$Z$};
+\path (x) edge [connect] (y) (y) edge [connect] (z);
+\end{tikzpicture}
+\end{center}
+
+\emph{``Real-life'' example.}
+$X = $ how much you weigh? $Y = $ how many bagels you eat every day? $Z= $ how many pull-ups you can do?
+
+$Z$ is a good predictor of $Y$, unless you ``intervene'' by offering a \$100 prize for doing 10 pull-ups.
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Predictive Invariance: Example}
+\begin{center}
+\begin{tikzpicture}[node distance = 2mm and 20mm]
+\tikzstyle{main} = [circle, minimum size = 12mm, thick, draw = black!80]
+\tikzstyle{connect} = [-latex, thick]
+  \node[main] (x) {$X$};
+  \node[main, right=of x] (y) {$Y$};
+  \node[main, right=of y] (z) {$Z$};
+\path (x) edge [connect] (y) (y) edge [connect] (z);
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+\item In contrast, consider predicting $Y$ using \emph{only} $X$.
+\item $\{X\}$ is an invariant set for $Y$ because it contains all direct parents and no children of $Y$.
+\item Indeed,
+\[
+\E[Y|X] = \frac{\Cov(Y, X)}{\Cov(X)} X = \frac{a}{a} X = X.
+\]
+The OLS coefficient, 1, does not depend on $a$ or $c$, and hence is \emph{invariant} under interventions.
+\item \emph{Exercise.} Is $\{Z\}$ an invariant set for $Y$?
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}
 \frametitle{Overview: Principles of Causal Inference}
 Causal relationships in a system represented by a graph.  The graph tells you:
 \begin{itemize}
@@ -522,6 +679,10 @@ Causal relationships in a system represented by a graph.  The graph tells you:
 \end{frame}
 
 \section{Statistical Methods}
+\sectionpage
+
+\section{Conclusions}
+\sectionpage
 
 \begin{frame}
 \frametitle{Look!  A diagram!}
