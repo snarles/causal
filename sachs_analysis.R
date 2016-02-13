@@ -194,7 +194,7 @@ plot(r21, r22); abline(0, 1, col = "red")
 ###
 
 layout(1)
-fmla <- log(Mek) ~ log(Raf) + log(Erk) + log(PKA)
+fmla <- log(Raf) ~ log(Mek) + log(Erk) + log(PKA)
 summary(lm(fmla, data = sachs_all))
 
 summary(lm(fmla, data = sachs_ints[[1]]))
