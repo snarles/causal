@@ -132,6 +132,17 @@
 (Part 1/2)
 \end{frame}
 
+
+
+
+
+
+
+
+
+
+
+
 \section{Introduction}
 
 \begin{frame}
@@ -199,13 +210,10 @@ Motivation for graphical lasso.
 \end{itemize}
 \end{frame}
 
-\section{Principles of Causal Inference}
+\begin{frame}
 \sectionpage
 
-\begin{frame}
-\frametitle{Principles of Causal Inference}
-
-Best framework: \emph{Graphical approach} pioneered by Judea Pearl.
+\emph{Graphical approach} pioneered by Judea Pearl.
 
 \begin{center}
 \includegraphics[scale = 0.2]{../images/pearl47.png}
@@ -679,7 +687,10 @@ Causal relationships in a system represented by a graph.  The graph tells you:
 \end{frame}
 
 \section{Statistical Methods}
+
+\begin{frame}
 \sectionpage
+\end{frame}
 
 
 \begin{frame}
@@ -713,8 +724,68 @@ Causal relationships in a system represented by a graph.  The graph tells you:
 \end{frame}
 
 
+\begin{frame}
+\frametitle{Observational data}
+\begin{center}
+\begin{tikzpicture}[node distance = 10mm and 15mm]
+\tikzstyle{main} = [circle, minimum size = 12mm, thick, draw = black!80]
+\tikzstyle{connect} = [-latex, thick]
+  \node[main] (x) {$X$};
+  \node[main, right=of x] (y) {$Y$};
+  \node[main, above=of x] (z) {$Z$};
+\path (x) edge [connect] (y) (z) edge [connect] (y) (z) edge [connect] (x);
+\end{tikzpicture}
+\end{center}
+\begin{itemize}
+\item $X = \{0, 1\}$ is the treatment variable, $Y$ is the outcome of interest, $Z$ are confounders.
+\item Want to estimate effect of treatment.
+\item No confounders?? Use $\E[Y|X=1] - \E[Y|X = 0]$, done!
+\item \emph{Unobserved} confounders?!  We'll discuss next time..
+\item For now, assume all confounders are observed.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Calculus of interventions}
+\begin{itemize}
+\item Our goal is to infer the average treatment effect,
+\[
+\E[Y|do(X=1)] - \E[Y|do(X = 0)]
+\]
+\item The `do' notation refers to interventions.
+\item We have observational data,
+\[p(x, y, z) = p(y|x,z)p(x|z)p(z).\]
+\end{itemize}
+\begin{center}
+\begin{tikzpicture}[node distance = 10mm and 15mm]
+\tikzstyle{main} = [circle, minimum size = 12mm, thick, draw = black!80]
+\tikzstyle{connect} = [-latex, thick]
+  \node[main] (x) {$X$};
+  \node[main, right=of x] (y) {$Y$};
+  \node[main, above=of x] (z) {$Z$};
+\path (x) edge [connect] (y) (z) edge [connect] (y) (z) edge [connect] (x);
+\end{tikzpicture}
+\end{center}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Calculus of interventions}
+\begin{itemize}
+\item $p(x, y, z) = p(y|x,z)p(x|z)p(z).$
+\item Step one: convert between `do' notation and probability
+\[
+p(y | x, z) = p(y | do(x), z)
+\]
+\item Step two: apply law of total probability
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
 \section{Conclusions}
 \sectionpage
+\end{frame}
 
 \begin{frame}
 \frametitle{Look!  A diagram!}
