@@ -770,72 +770,83 @@ Causal relationships in a system represented by a graph.  The graph tells you:
 \end{frame}
 
 \begin{frame}
-\frametitle{Calculus of interventions}
+\frametitle{Adjustment for confounders}
+To compute $\E[y|do(X=1)] - \E[y|do(X=0)]$, it suffices to estimate $p(y|do(x))$.
 \begin{itemize}
 \item $p(x, y, z) = p(y|x,z)p(x|z)p(z).$
 \item Step one: convert between `do' notation and probability
 \[
-p(y | x, z) = p(y | do(x), z)
+p(y | x, z) = p(y | do(x), z).
 \]
 \item Step two: apply law of total probability
+\[
+p(y|do(x)) = \sum_z p(y, z|do(x)) = \sum_z p(y|do(x), z) p(z|do(x))\]\[ = \sum_z p(y|x, z) p(z).
+\]
+\item Step three: plug in empirical $\hat{p}(y|x, z)$ obtained by conditioning on $z$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Potential outcomes formulation}
+Potential outcomes uses notation $Y^{(0)}$ for $Y|do(X=0)$ and $Y^{(1)}$ for $Y|do(X = 1)$.
+\begin{itemize}
+\item First, determine the nature of the ``assignment mechanism,'' $X$.  In this case, the probability that $X=1$ is determined by $Z$,
+$f(z) = p(X=1|z).$
+The function $f(z)$ is called the \emph{propensity score.}
+\item Estimate $f(z)$ using regression (e.g. logistic regression $X$ on $Z$).
+\item Match `cases'  (which have $X=1$) to `controls' (with $X=0$) that have similar propensity scores.
+\item Compute average treatment effect by a weighted average of:
+\[
+\Pr[X=1]\underbrace{(\E[Y|X=1] - \E[Y|do(X=0), X=1])}_{\text{treatment effect on treated}}\]\[
++\Pr[X=0]\underbrace{(\E[Y|X=0, do(X=1)] - \E[Y|X=0])}_{\text{treatment effect on untreated}}
+\]
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Comparison of approaches}
+\begin{itemize}
+\item Approaches are \emph{almost} equivalent in this example.
+Matching based on $f(z)=p(x|z)$ and weighting based on probability of treatment
+produces the same result as conditioning on $Z$.
+\item Practically, there are still subtle differences.  Easier to get confidence intervals in one approach than another, etc.
+\item The real devil is in the assumptions of the approaches.  Which assumptions are needed, and how can they be checked?
+How much knowledge about the graph do we need for each approach?
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\section{Conclusions}
+\sectionpage
+\begin{itemize}
+\item Causal models imply statements about which variables get affected by interventions,
+which conditional independencies exist, and which sets of variables lead to invariant prediction rules.
+\item Real data may reveal a causal model to be more of a useful approximation than a literal description.
+\item Estimation of causal effects from experiments with imperfect randomization or observational data is a common goal in causal inference, and can be addressed using the graphical approach or potential outcomes framework.
 \end{itemize}
 \end{frame}
 
 
 \begin{frame}
-\section{Conclusions}
-\sectionpage
+\frametitle{Next time...}
+In part II of the talk, we'll go into more detail about the limitations of causal inference, and criticism of many common practices.
+\begin{itemize}
+\item Does causal inference require us to make too many strong assumptions?
+\item Do instrumental variable approaches give sensible results?
+\item How robust are causal inferences to hidden confounders?
+\item Is it realistic to be able to learn structure from completely observational data?
+\end{itemize}
+
+We'll also introduce the causal invariance approach by Peters, Meinshausen, and B\"{u}hlmann--could this new approach extend the applicability of causal inference?
+
 \end{frame}
 
 \begin{frame}
-\frametitle{Look!  A diagram!}
-Don't put this in the final presentation.
-
-\begin{center}
-\begin{tikzpicture}[node distance = 2mm and 20mm]
-\tikzstyle{main} = [circle, minimum size = 12mm, thick, draw = black!80]
-\tikzstyle{main0} = [circle, minimum size = 2mm, thick, draw = white!100]
-\tikzstyle{param} = [rectangle, minimum size = 13mm, thick, draw = black!80]
-\tikzstyle{connect} = [-latex, thick]
-\tikzstyle{box} = [rectangle, draw = black!100]
-  \node[param, fill = black!50] (px) {$p(\bx)$};
-  \node[main, right=of px] (x2) {\small{$\bX^{(2)}$}};
-  \node[main, above=of x2] (x1) {\small{$\bX^{(1)}$}};
-  \node[main0, below=of x2] (xdots) {$\vdots$};
-  \node[main, below=of xdots] (x3) {\small{$\bX^{(K)}$}};
-  \node[main, right=of x1] (y11) {\small{$\bY^{(1,1)}$}};
-  \node[main, right=of x2] (y21) {\small{$\bY^{(2,j)}$}};
-  \node[main, right=of x3] (y31) {\small{$\bY^{(K,j)}$}};
-\begin{scope}[node distance = 3mm and 2mm]
-  \node[main0, right=of y11] (y12) {$\cdots$};
-  \node[main0, right=of y21] (y22) {$\cdots$};
-  \node[main0, right=of y31] (y32) {$\cdots$};
-  \node[main, right=of y12] (y13) {\small{$\bY^{(1,r)}$}};
-  \node[main, right=of y22] (y23) {\small{$\bY^{(2,r)}$}};
-  \node[main, right=of y32] (y33) {\small{$\bY^{(K,r)}$}};
-\end{scope}
-\path (px) edge [connect] (x1) (px) edge [connect] (x2) (px) edge [connect] (x3)
-      (x1) edge [connect] (y11) (x2) edge [connect] (y21) (x3) edge [connect] (y31);
-\end{tikzpicture}
-\end{center}
-
-\begin{center}
-
-
-Legend: $K = \{$
-\sethlcolor{color1}
-\textbf{\textcolor{white}{\SoulColor\hl{ 2 }}}, 
-\sethlcolor{color2}
-\textbf{\textcolor{white}{\SoulColor\hl{ 9 }}},
-\sethlcolor{color3}
-\textbf{\textcolor{white}{\SoulColor\hl{ 99 }}},
-\sethlcolor{color4}
-\textbf{\textcolor{white}{\SoulColor\hl{ 999 }}}$\ \}$
-\end{center}
-
-
+\frametitle{Reference}
+\begin{itemize}
+\item Peters, Jonas, Peter B\"{u}hlmann, and Nicolai Meinshausen. ``Causal inference using invariant prediction: identification and confidence intervals.'' arXiv preprint arXiv:1501.01332 (2015).
+\end{itemize}
 \end{frame}
-
 
 
 
