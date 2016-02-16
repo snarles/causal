@@ -645,7 +645,7 @@ The model is not invariant.
 \end{center}
 
 \emph{``Real-life'' example.}
-$X = $ how much you weigh? $Y = $ how many bagels you eat every day? $Z= $ how many pull-ups you can do?
+$X = $ lifetime total number of bagels eaten, $Y = $ Body Mass Index (BMI), $Z= $ how many pull-ups you can do?
 
 $Z$ is a good predictor of $Y$, unless you ``intervene'' by offering a \$100 prize for doing 10 pull-ups.
 
@@ -673,6 +673,33 @@ $Z$ is a good predictor of $Y$, unless you ``intervene'' by offering a \$100 pri
 The OLS coefficient, 1, does not depend on $a$ or $c$, and hence is \emph{invariant} under interventions.
 \item \emph{Exercise.} Is $\{Z\}$ an invariant set for $Y$?
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Predictive Invariance: General case}
+\begin{center}
+\begin{tikzpicture}[node distance = 2mm and 20mm]
+\tikzstyle{main} = [circle, minimum size = 12mm, thick, draw = black!80]
+\tikzstyle{connect} = [-latex, thick]
+  \node[main] (x) {$X$};
+  \node[main, right=of x] (y) {$Y$};
+  \node[main, right=of y] (z) {$Z$};
+\path (x) edge [connect] (y) (y) edge [connect] (z);
+\end{tikzpicture}
+\end{center}
+
+\[p(x, y, z) = p(x) p(y|x) p(z|y)\]
+Interventions:
+\[
+p(x) \to \tilde{p}(x)\text{ or }p(z|y) \to \tilde{p}(z|y)
+\]
+
+Non-invariant rule:
+\[
+p(y|x, z) = \frac{p(x, y, z)}{p(x, z)} = \frac{p(x) p(y|x) p(z|y)}{p(x)p(z|x)} = \frac{p(y|x) p(z|y)}{p(z|x)}
+\]
+affected by intervention $p(z|y) \to \tilde{p}(z|y)$.
+
 \end{frame}
 
 
