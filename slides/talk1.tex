@@ -713,6 +713,10 @@ Causal relationships in a system represented by a graph.  The graph tells you:
 \item[II.] what conditional independence relationships exist in the joint distribution.
 \item[III.] which sets of predictors and responses will have ``invariant'' optimal predictive rules.
 \end{itemize}
+These three intuitive principles are equivalent to \emph{factorization} definition of graphical model:
+\[
+p(x_1,\hdots, x_k) = \prod_{i=1}^k p(x_i|\text{Parents}(x_i)).
+\]
 \end{frame}
 
 \section{Statistical Methods}
