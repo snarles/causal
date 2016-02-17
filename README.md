@@ -3,9 +3,7 @@ Causal Inference stuff
 
 # Abstract
 
-Causal Inference and Causal Invariance
-
-Part I: Introduction
+Causal Inference and The Invariance Principle: An Introduction
 
 by Charles Zheng and Qingyuan Zhao
 
@@ -21,12 +19,13 @@ approach is more narrowing concerned with estimating a particular
 causal effect.  The ``invariant prediction'' approach may provide an
 intermediate approach, which learns part of the graphical structure.
 
+# Part I: Introduction
 
 In the first part of the talk, we'll cover the basics of the graphical
-approach in causality, and illustrate the three main principles.  The
-causal graph tells you which variables are affected by intervention
-and also implies certain conditional independence relationships.
-Using simple examples, we illustrate the principle of invariant
+approach in causality, and illustrate three main principles: 1. The
+causal graph tells you which variables are affected by
+intervention; 2. It implies certain conditional independence
+relationships; 3. Using simple examples, we illustrate the principle of invariant
 prediction, and derivation of both the back-door criterion and
 matching approach for estimating an average treatment approach.  Our
 focus in this first part of the talk is on core principles and theory:
