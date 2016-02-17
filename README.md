@@ -1,11 +1,9 @@
 # causal
-Causal Inference stuff
-
-# Abstract
-
 Causal Inference and The Invariance Principle: An Introduction
 
 by Charles Zheng and Qingyuan Zhao
+
+# Abstract
 
 In this two-part talk, we will give an overview to the field of causal
 inference, with the goal of discussing recent developments in the
@@ -33,5 +31,7 @@ we leave practical issues and details (including many criticisms and
 debates between causal inference researchers, statisticians, and
 practitioners) for the second half of the talk, which will be given in
 the following week.
+
+# Part II: Invariance
 
 In the second part of the talk, we'll blabla
