@@ -1,0 +1,219 @@
+> ## Hidden
+> apply_ICP(1, TRUE, alpha = 0.1)
+
+ Invariant Linear Causal Regression (with hidden variables) at level 0.1
+ Variables: Erk, Akt, PKA show a significant causal effect
+ 
+       LOWER BOUND  UPPER BOUND  MAXIMIN EFFECT  P-VALUE   
+Mek         -0.89         1.84            0.00   1.0000   
+PLCg        -1.14         0.73            0.00   1.0000   
+PIP2        -0.76         0.40            0.00   1.0000   
+PIP3        -0.73         1.74            0.00   1.0000   
+Erk         -1.56        -0.25           -0.25   0.0095 **
+Akt          0.07         1.96            0.07   0.0684 . 
+PKA          0.03         0.78            0.03   0.0613 . 
+PKC         -1.33         0.35            0.00   0.6476   
+p38          0.00         0.17            0.00   0.1054   
+Jnk         -0.79         0.31            0.00   1.0000   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+> apply_ICP(2, TRUE, alpha = 0.1)
+
+ Invariant Linear Causal Regression (with hidden variables) at level 0.1
+ Variables: Raf, Erk, PKC show a significant causal effect
+ 
+       LOWER BOUND  UPPER BOUND  MAXIMIN EFFECT  P-VALUE    
+Raf          0.32         1.21            0.32  8.6e-05 ***
+PLCg        -0.40         0.50            0.00  1.00000    
+PIP2        -0.14         0.16            0.00  1.00000    
+PIP3        -1.07         0.98            0.00  1.00000    
+Erk         -1.68        -0.40           -0.40  0.00028 ***
+Akt         -0.70         1.84            0.00  1.00000    
+PKA         -0.03         0.25            0.00  0.49827    
+PKC          0.28         0.83            0.28  0.00206 ** 
+p38         -0.35         0.06            0.00  0.29529    
+Jnk         -0.18         0.54            0.00  0.65942    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+> apply_ICP(3, TRUE, alpha = 0.1)
+
+ Invariant Linear Causal Regression (with hidden variables) at level 0.1
+ Variables: PIP2, Jnk show a significant causal effect
+ 
+       LOWER BOUND  UPPER BOUND  MAXIMIN EFFECT  P-VALUE    
+Raf         -0.43         0.59            0.00     1.00    
+Mek         -0.67         0.16            0.00     0.95    
+PIP2         0.30         0.42            0.30  < 1e-09 ***
+PIP3        -0.35         0.38            0.00     1.00    
+Erk         -0.92         0.16            0.00     0.72    
+Akt         -0.03         0.76            0.00     0.17    
+PKA         -0.17         0.02            0.00     0.19    
+PKC         -0.17         0.40            0.00     1.00    
+p38         -0.09         0.28            0.00     1.00    
+Jnk          0.22         0.23            0.22  1.6e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+> apply_ICP(4, TRUE, alpha = 0.1) ## PIP2 ~ PLCg
+
+ Invariant Linear Causal Regression (with hidden variables) at level 0.1
+ Variables: Raf, Mek, PIP3 show a significant causal effect
+ 
+       LOWER BOUND  UPPER BOUND  MAXIMIN EFFECT  P-VALUE    
+Raf         -1.08        -0.14           -0.14    0.017 *  
+Mek         -1.35        -0.10           -0.10    0.043 *  
+PLCg        -1.23         0.97            0.00    1.000    
+PIP3         0.94         2.46            0.94  6.2e-06 ***
+Erk         -2.87         1.56            0.00    1.000    
+Akt         -1.54         3.03            0.00    1.000    
+PKA         -0.65         1.00            0.00    1.000    
+PKC         -0.10         1.13            0.00    0.227    
+p38         -0.35         0.07            0.00    0.450    
+Jnk         -0.04         0.70            0.00    0.169    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+> apply_ICP(5, TRUE, alpha = 0.1)
+
+ Invariant Linear Causal Regression (with hidden variables) at level 0.1
+ Variables: Raf, Mek, PLCg, PIP2 show a significant causal effect
+ 
+       LOWER BOUND  UPPER BOUND  MAXIMIN EFFECT  P-VALUE  
+Raf          0.01         0.37            0.01    0.087 .
+Mek          0.08         0.85            0.08    0.028 *
+PLCg         0.11         0.87            0.11    0.018 *
+PIP2         0.13         0.80            0.13    0.031 *
+Erk         -0.78         2.46            0.00    0.481  
+Akt         -2.51         0.04            0.00    0.116  
+PKA         -0.50         0.60            0.00    1.000  
+PKC         -0.59         0.09            0.00    0.255  
+p38         -0.07         0.16            0.00    0.851  
+Jnk         -0.47         0.07            0.00    0.338  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+> apply_ICP(6, TRUE, alpha = 0.1)
+
+ Invariant Linear Causal Regression (with hidden variables) at level 0.1
+ Variables: PLCg, Akt, PKA, Jnk show a significant causal effect
+ 
+       LOWER BOUND  UPPER BOUND  MAXIMIN EFFECT  P-VALUE    
+Raf         -0.37         0.05            0.00  0.42878    
+Mek         -0.04         0.22            0.00  0.59264    
+PLCg         0.07         0.50            0.07  0.01134 *  
+PIP2        -0.06         0.10            0.00  1.00000    
+PIP3        -0.30         0.19            0.00  1.00000    
+Akt          0.35         0.99            0.34  0.00035 ***
+PKA          0.08         0.24            0.08  2.3e-06 ***
+PKC         -0.13         0.04            0.00  1.00000    
+p38         -0.11         0.09            0.00  0.75738    
+Jnk         -0.18        -0.01            0.00  0.06395 .  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+> apply_ICP(7, TRUE, alpha = 0.1)
+
+ Invariant Linear Causal Regression (with hidden variables) at level 0.1
+ Variables: Mek, PIP3, Erk, PKA, p38 show a significant causal effect
+ 
+       LOWER BOUND  UPPER BOUND  MAXIMIN EFFECT  P-VALUE    
+Raf         -0.10         0.65            0.00    0.608    
+Mek          0.18         0.53            0.18  1.3e-06 ***
+PLCg         0.00         0.29            0.00    0.104    
+PIP2        -0.12         0.08            0.00    1.000    
+PIP3         0.00         0.19            0.00    0.100    
+Erk          0.31         0.59            0.31  1.2e-06 ***
+PKA          0.00         0.20            0.00    0.095 .  
+PKC         -0.13         0.10            0.00    1.000    
+p38          0.01         0.15            0.01    0.064 .  
+Jnk         -0.13         0.02            0.00    0.200    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+> apply_ICP(8, TRUE, alpha = 0.1)
+
+ Invariant Linear Causal Regression (with hidden variables) at level 0.1
+ Variables: PLCg, PIP2, PIP3, Erk, PKC, Jnk show a significant causal effect
+ 
+       LOWER BOUND  UPPER BOUND  MAXIMIN EFFECT  P-VALUE    
+Raf         -0.92         0.68            0.00   0.6335    
+Mek         -0.79         1.95            0.00   1.0000    
+PLCg        -1.70        -1.32           -1.32  4.4e-05 ***
+PIP2        -0.78        -0.16           -0.16   0.0053 ** 
+PIP3         0.97         2.34            0.97  4.7e-05 ***
+Erk          0.67         1.85            0.67   0.0004 ***
+Akt         -0.95         1.89            0.00   1.0000    
+PKC         -0.34         0.10            0.00   0.0074 ** 
+p38         -0.14         1.17            0.00   0.1489    
+Jnk         -0.18         0.21            0.00   0.0118 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+> apply_ICP(9, TRUE, alpha = 0.1)
+
+ Invariant Linear Causal Regression (with hidden variables) at level 0.1
+ Variables: Raf, Mek, PLCg, Erk, Akt, Jnk show a significant causal effect
+ 
+       LOWER BOUND  UPPER BOUND  MAXIMIN EFFECT  P-VALUE    
+Raf          0.23         0.33            0.23  0.00572 ** 
+Mek          0.30         0.44            0.30  0.00098 ***
+PLCg        -0.37        -0.12           -0.12  0.01907 *  
+PIP2        -0.31         0.38            0.00  1.00000    
+PIP3        -0.36         2.03            0.00  0.47231    
+Erk          0.00         1.80            0.00  0.09981 .  
+Akt         -2.72        -0.19           -0.18  0.03511 *  
+PKA         -0.98         1.29            0.00  1.00000    
+p38         -0.22         0.07            0.00  0.57787    
+Jnk          0.31         0.73            0.31  0.00025 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+> apply_ICP(10, TRUE, alpha = 0.1)
+
+ Invariant Linear Causal Regression (with hidden variables) at level 0.1
+ Variables: Raf, Akt, PKA, PKC, Jnk show a significant causal effect
+ 
+       LOWER BOUND  UPPER BOUND  MAXIMIN EFFECT  P-VALUE    
+Raf          0.01         0.74            0.01    0.082 .  
+Mek         -0.50         0.10            0.00    0.426    
+PLCg        -0.08         0.26            0.00    1.000    
+PIP2        -0.09         0.05            0.00    0.739    
+PIP3        -0.34         0.63            0.00    1.000    
+Erk         -0.47         0.00            0.00    0.101    
+Akt          0.02         0.61            0.02    0.059 .  
+PKA          0.01         0.06            0.01    0.030 *  
+PKC          0.33         0.68            0.33  < 1e-09 ***
+Jnk          0.12         0.31            0.12  6.1e-08 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+> apply_ICP(11, TRUE, alpha = 0.1)
+
+ Invariant Linear Causal Regression (with hidden variables) at level 0.1
+ Variables: Raf, PLCg, PKA, PKC, p38 show a significant causal effect
+ 
+       LOWER BOUND  UPPER BOUND  MAXIMIN EFFECT  P-VALUE    
+Raf         -1.26        -0.17           -0.17  0.01374 *  
+Mek         -0.42         0.50            0.00  1.00000    
+PLCg         0.45         0.71            0.45  1.2e-06 ***
+PIP2        -0.22         0.13            0.00  0.79115    
+PIP3        -0.48         0.59            0.00  1.00000    
+Erk         -0.98         0.19            0.00  0.29310    
+Akt         -0.44         0.71            0.00  0.74349    
+PKA          0.18         0.25            0.18  0.00311 ** 
+PKC          0.14         0.59            0.14  0.00033 ***
+p38          0.28         0.76            0.28  4.0e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1

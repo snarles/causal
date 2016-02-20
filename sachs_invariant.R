@@ -35,7 +35,7 @@ sachs <- c(list(sachs0), sachs_ints)
 sachs_all <- do.call(rbind, sachs)
 
 ExpInd <- sachs_all[, "ExpInd"]
-sachs_data <- sachs_all[, -1]
+sachs_data <- log(sachs_all[, -1])
 
 ####
 ##  Which interventions include which variables??
@@ -89,7 +89,7 @@ apply_ICP <- function(prot_no, hidden = FALSE, ...) {
 apply_ICP(1, FALSE, alpha = 0.1)
 apply_ICP(2, FALSE, alpha = 0.1)
 apply_ICP(3, FALSE, alpha = 0.1)
-apply_ICP(4, FALSE, alpha = 0.1) ## PIP2 ~ PLCg
+apply_ICP(4, FALSE, alpha = 0.1)
 apply_ICP(5, FALSE, alpha = 0.1)
 apply_ICP(6, FALSE, alpha = 0.1)
 apply_ICP(7, FALSE, alpha = 0.1)
@@ -102,7 +102,7 @@ apply_ICP(11, FALSE, alpha = 0.1)
 apply_ICP(1, TRUE, alpha = 0.1)
 apply_ICP(2, TRUE, alpha = 0.1)
 apply_ICP(3, TRUE, alpha = 0.1)
-apply_ICP(4, TRUE, alpha = 0.1) ## PIP2 ~ PLCg
+apply_ICP(4, TRUE, alpha = 0.1)
 apply_ICP(5, TRUE, alpha = 0.1)
 apply_ICP(6, TRUE, alpha = 0.1)
 apply_ICP(7, TRUE, alpha = 0.1)
@@ -110,3 +110,5 @@ apply_ICP(8, TRUE, alpha = 0.1)
 apply_ICP(9, TRUE, alpha = 0.1)
 apply_ICP(10, TRUE, alpha = 0.1)
 apply_ICP(11, TRUE, alpha = 0.1)
+
+## See sachs_invariant_output.txt
