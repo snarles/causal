@@ -124,7 +124,7 @@ Jnk         -0.18        -0.01            0.00  0.06395 .
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 
-[[Akt -> Erk parent, PKA -> Erk parent]]
+[[Akt -> Erk incorrect, PKA -> Erk parent]]
 
 > apply_ICP(7, TRUE, alpha = 0.1)
 
