@@ -34,4 +34,12 @@ the following week.
 
 # Part II: Invariance
 
-In the second part of the talk, we'll blabla
+In the second part of the talk, we'll start with the conventional
+graphical approach (based on conditional independence tests) and the
+conventional functional approach (based on additional distributional
+assumptions and MLE), and then introduce the predictive invariance
+approach. Our main focus is Section 2--4 of the Peters et al. paper,
+but we will also explain why their approach is in some sense "robust"
+to model misspecification and hidden variables. The talk is concluded
+with an attempt to apply their ICP algorithm to a protein network
+dataset.
