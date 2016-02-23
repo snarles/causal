@@ -22,8 +22,6 @@ graphviz.plot(cpdag(dag))
 ###
 
 coefmatrix <- randn(p, p) * adjmat
-n <- 20
-noises <- randn(n, p) - .5
 
 ###
 #  Function for generating variables from coefmatrix and noise terms
@@ -49,13 +47,22 @@ generate_vars <- function(coefmatrix, noises) {
 }
 
 ###
-#  Result
+#  Result of BNLEARN
 ###
-layout(t(1:2))
-n <- 100000
+layout(matrix(1:4, 2, 2))
+n <- 1000
+noises <- randn(n, p)
 dat <- data.frame(generate_vars(coefmatrix, noises))
 res <- gs(dat)
 res <- iamb(dat)
 res <- hc(dat, restart = 10)
-graphviz.plot(res)
-graphviz.plot(dag)
+graphviz.plot(dag, main = "truth")
+graphviz.plot(res, main = "est")
+graphviz.plot(cpdag(dag), main = "truth")
+graphviz.plot(cpdag(res), main = "est")
+
+
+
+###
+#  
+###
