@@ -202,7 +202,7 @@
     \end{split}
     \]
     \vspace{-2em}
-  \item Functional appraoch: outcome regression $Y \sim X + Z$.
+  \item Functional approach: outcome regression $Y \sim X + Z$.
   \item Potential outcome approach: estimate the propensity score.
   \end{itemize}
 \end{frame}
@@ -302,15 +302,163 @@
   \frametitle{Building block}
   Testing the null hypothesis that $(\gamma,S)$
   satisfies the assumption.
+  \[
+  \begin{split}
+    H_{0,\gamma,S}(\mathcal{E}):~&\gamma_k = 0~\mathrm{if}~k \in S,~and~
+    \exists F_{\epsilon} \mathrm{~such~that~for~all~} e \in \mathcal{E}, \\
+    &Y^e = X^e \gamma + \epsilon^e,~\epsilon^e \sim F_{\epsilon},~ \epsilon^e \independent X^e_{S}.\\
+    H_{0,S}(\mathcal{E}):~&\exists \gamma \mathrm{~such~that~}
+    H_{0,\gamma,S}(\mathcal{E}) \mathrm{~is~true}.
+  \end{split}
+  \]
+
+  \begin{alertblock}{Difficulty}
+    \begin{center}
+      \begin{tikzpicture}[node distance = 5mm and 5mm]
+        \tikzstyle{main} = [circle, minimum size = 3mm, thick, draw = black!80]
+        \tikzstyle{connect} = [-latex, thick]
+        \node[main] (x) {$X$};
+        \node[main, right=of x] (y) {$Y$};
+        \node[main, above=of x] (w) {$W$};
+        \node[main, above=of y] (z) {$Z$};
+        \path (x) edge [connect] (y) (w) edge [connect] (x) (y) edge [connect] (z);
+      \end{tikzpicture} \qquad
+      \begin{tikzpicture}[node distance = 3mm and 5mm]
+        \tikzstyle{main} = [circle, minimum size = 3mm, thick, draw = black!80]
+        \tikzstyle{connect} = [-latex, thick]
+        \node[main] (x) {$X$};
+        \node[main, right=of x] (y) {$Y$};
+        \node[main, above=of x] (w) {$W$};
+        \node[main, above=of y] (z) {$Z$};
+        \path (x) edge [connect] (y) (w) edge [connect] (y) (z) edge [connect] (y);
+      \end{tikzpicture}
+    \end{center}
+
+    Statistically, we may end up accepting both $Y^e = X ^e+ \epsilon^e$ and $Y^e = X ^e + 0.01
+    W^e + 0.01 Z^e + \epsilon^e$, for both causal structures.
+  \end{alertblock}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Generic procedure}
+  \begin{exampleblock}{}
+    \begin{enumerate}
+    \item For each $S \subseteq \{1,\dotsc,p\}$, test
+      $H_{0,S}(\mathcal{E})$ at level $\alpha$.
+    \item Set $\hat{S}(\mathcal{E}) =
+      \underset{S:H_{0,S}(\mathcal{E})\mathrm{~not~rejected}}{\bigcap}
+      S$.
+    \item For the confidence sets, set $\hat{\Gamma}(\mathcal{E}) =
+      \underset{S \subseteq \{1,\dotsc,p\}}{\bigcup}
+      \hat{\Gamma}_S(\mathcal{E})$, where
+      \[
+      \hat{\Gamma}_S(\mathcal{E}) =
+      \begin{cases}
+        \emptyset &
+        H_{0,S}(\mathcal{E})\mathrm{~is~rejected~at~level~}\alpha, \\
+        \hat{S} & \mathrm{otherwise}.
+      \end{cases}
+      \]
+      $\hat{C}(S)$ is a $(1-\alpha)$-confidence set for $\gamma$ obtained by
+      pooling the data.
+    \end{enumerate}
+  \end{exampleblock}
+
+  \begin{block}{Theorem (Peters et al.)} \centering
+    $\mathrm{P}(\hat{S}(\mathcal{E}) \subseteq S^{*}) \ge 1-\alpha,~
+    \mathrm{P}(\gamma^{*} \in \hat{\Gamma}(\mathcal{E})) \ge 1 - 2\alpha$.
+  \end{block}
+\end{frame}
+
+\begin{frame}
+  \frametitle{The Statistical Challenge}
+  Depending on the modeling assumption, this hypothesis can be:
 \[
 \begin{split}
-H_{0,\gamma,S}(\mathcal{E}):~&\gamma_k = 0~\mathrm{if}~k \in S,~and~
-\exists F_{\epsilon} \mathrm{~such~that~for~all~} e \in \mathcal{E}, \\
-  &Y^e = X^e \gamma + \epsilon^e,~\epsilon^e \sim F_{\epsilon},~ \epsilon^e \independent X^e_{S}.\\
-H_{0,S}(\mathcal{E}):~&\exists \gamma \mathrm{~such~that~}
-H_{0,\gamma,S}(\mathcal{E}) \mathrm{~is~true}.
+    H_{0,S,\mathrm{lin}}(\mathcal{E}):~&\exists \gamma \mathrm{~s.t.~} \gamma_k =
+    0~\mathrm{if}~k \in S, and \\ ~&
+    \exists F_{\epsilon} \mathrm{~s.t.~} Y^e = X^e \gamma +
+    \epsilon^e,~\epsilon^e \sim F_{\epsilon},~ \epsilon^e \independent
+    X^e_{S},~\forall e \in \mathcal{E}. \\
+    H_{0,S,\mathrm{lin\textrm{-}gauss}}(\mathcal{E}):~&
+    H_{0,S,\mathrm{lin}}(\mathcal{E}) \mathrm{~and~} F_{\epsilon} = \mathrm{N}(0,\sigma^2). \\
+    H_{0,S,\mathrm{nonlin}}(\mathcal{E}):~&\exists g(X_S,\epsilon),~F_{\epsilon} \mathrm{~s.t.~}
+    Y^e = g(X_S^e, \epsilon^e),~\epsilon^e\ldots.\\
+    H_{0,S,\mathrm{additive}}(\mathcal{E}):~&H_{0,S,\mathrm{nonlin}}(\mathcal{E})
+    \mathrm{~and~} g(X_S,\epsilon) \mathrm{~is~additive}.\\
+    H_{0,S,\mathrm{hidden}}(\mathcal{E}):~&\epsilon^e \sim
+    F_{\epsilon}, ~ \forall e \in
+    \mathcal{E},~\mathrm{but}~F_{\epsilon}\mathrm{~can~have~nonzero~mean}.\\
 \end{split}
 \]
+
+  \begin{exampleblock}{How to test $H_{0,S}(\mathcal{E})$?}
+  Peters et al.\ give concrete proposals for $H_{0,S,\mathrm{lin\textrm{-}gauss}}$ and
+  $H_{0,S,\mathrm{lin\textrm{-}gauss\textrm{-}hidden}}$. They are implemented in their
+  \texttt{InvariantCausalPrediction} package.
+  \end{exampleblock}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Robustness of the invariance approach}
+  In Meinshausen's talk: we don't make false discoveries, even under a
+  misspecified model!
+
+  Truth (at least what we believe in):
+
+  \begin{center}
+  \begin{tabular}{|c|c|}
+    \hline
+    Things can go wrong & ICP's behavior \\
+    \hline
+    Intervene on $Y$ (or a missing cause) &
+    $\underset{\emptyset}{\bigcap}$ \\
+    \hline
+    Non-linear, non-additive &
+    $\underset{\emptyset}{\bigcap}$ \\
+    \hline
+    Not enough interventions &
+    False positives \\
+    \hline
+    Small sample size &
+    $\emptyset$ \\
+    \hline
+    Left out a confounder & $\emptyset$ \\
+    \hline
+    Left out an unconfounding predictor & okay \\
+    \hline
+  \end{tabular}
+  \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Splitting purely observational data}
+  A big bonus: we can ``create'' an environment by conditioning on a
+  variable $U$ that we know precedes $Y$. This is valid because
+\[
+Y|X_{S^{*}} ~\overset{d}{=}~ Y|X_{S^{*}},U=u.
+\]
+  Note: this statement is true only in the region that both
+  conditional distributions are well defined.
+
+  \begin{exampleblock}{Creating environment by instrumental variable}
+    \begin{center}
+        \begin{tikzpicture}[node distance = 5mm and 5mm]
+        \tikzstyle{main} = [circle, minimum size = 3mm, thick, draw = black!80]
+        \tikzstyle{connect} = [-latex, thick]
+        \node[main] (x) {$X$};
+        \node[main, right=of x] (y) {$Y$};
+        \node[main, left=of x] (w) {$W$};
+        \node[main, above=of x] (z) {$Z$};
+        \path (x) edge [connect] (y) (w) edge [connect] (x) (z) edge
+        [connect] (x) (z) edge [connect] (y);
+      \end{tikzpicture}
+    \end{center}
+    If there is a hidden confounder $Z$, we can condition on the
+    instrumental variable $W$.
+  \end{exampleblock}
 \end{frame}
 
 \end{document}
