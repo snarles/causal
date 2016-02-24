@@ -406,6 +406,33 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{A concrete proposal}
+  \[
+  \begin{pmatrix}
+    Y^1 \\
+    Y^2 \\
+  \end{pmatrix} =
+  \begin{pmatrix}
+    X^1 \\
+    X^2 \\
+  \end{pmatrix}
+  \gamma +
+  \begin{pmatrix}
+    \epsilon^1 \\
+    \epsilon^2 \\
+  \end{pmatrix}
+  \]
+  \begin{enumerate}
+  \item Estimate $\gamma$ from the pooled data.
+  \item Compare distributions of the residuals $\hat{\epsilon}^1$ and
+    $\hat{\epsilon}^2$. When Gaussian, compare their means (equal to
+    $0$ if no hidden variable) and variances and apply Bonferroni's correction.
+  \end{enumerate}
+
+  This algorithm can be easily extended to non-linear models.
+\end{frame}
+
+\begin{frame}
   \frametitle{Robustness of the invariance approach}
   In Meinshausen's talk: we don't make false discoveries, even under a
   misspecified model!
@@ -444,6 +471,23 @@
   \begin{center}
   \includegraphics[scale = 0.5]{../images/ICP_screen.png}
   \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Identifiability}
+  Peters et al. give sufficient conditions for identifiability of $S^{*}$ in the
+  linear Gaussian model.
+  \begin{block}{Theorem (Peters et al.)}
+    $S^{*}$ or equivalently the parents of $Y$ are identifiable if
+    \begin{enumerate}
+    \item At least one single intervention on each variable other than
+      $Y$; or
+    \item There is only one intervention on the youngest parent of $Y$
+      (say $X_1$), that is there is no directed path from $X_1$ to any
+      other parent of $Y$. In this case $S^{*}$ is identifiable with
+      probability $1$ (when parameters $\gamma$ is drawn from some distribution).
+    \end{enumerate}
+  \end{block}
 \end{frame}
 
 \begin{frame}
