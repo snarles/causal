@@ -74,5 +74,82 @@ dat <- generate_manipulations(coefmatrix, mus, vars, del.mus, del.vars, ExpInd, 
 dat <- generate_manipulations(coefmatrix, mus, vars, del.mus, del.vars, ExpInd, hetero = 1)
 Y <- dat[, Yind]
 X <- dat[, -Yind]
-ICP(X, Y, ExpInd)
-hiddenICP(X, Y, ExpInd)
+(resICP <- ICP(X, Y, ExpInd))
+(resH <- hiddenICP(X, Y, ExpInd))
+
+####
+##  Simulation code
+####
+
+run_stuff <- function(procs = c("ICP", "hiddenICP"), neach, hetero = 0, ...) {
+  ExpInd <- rep(1:5, each = neach)
+  dat <- generate_manipulations(coefmatrix, mus, vars, del.mus, del.vars, ExpInd, 
+                                hetero = hetero)
+  Y <- dat[, Yind]
+  X <- dat[, -Yind]
+  ans <- list()
+  if ("ICP" %in% procs) {
+    ans[["ICP"]] <- ICP(X, Y, ExpInd, ...)
+  }
+  if ("hiddenICP" %in% procs) {
+    ans[["hiddenICP"]] <- hiddenICP(X, Y, ExpInd, ...)
+  }
+  ans
+}
+
+## hiddenICP seems broken, skipping hereafter
+run_stuff(neach = 1e5, hetero = 0)
+run_stuff(neach = 1e5, hetero = 1)
+
+
+## some interesting cases
+
+run_stuff("ICP", neach = 1000, hetero = 0)
+run_stuff("ICP", neach = 1000, hetero = 1)
+run_stuff("ICP", neach = 100, hetero = 1)
+run_stuff("ICP", neach = 50, hetero = 1)
+run_stuff("ICP", neach = 20, hetero = 1)
+run_stuff("ICP", neach = 20, hetero = 1, alpha = 0.5)
+
+## automatically extract outcomes
+ex_outcomes <- function(res) {
+  mr <- NA
+  if ("modelReject" %in% names(res)) {
+    mr <-   res$modelReject
+  }
+  if (!is.na(mr) && mr) {
+    pvs <-   res$pvalues + NA
+  } else {
+    pvs <- res$pvalues
+  }
+  names(pvs) <- colnames(X)
+  c(modelReject = mr, pvs)
+}
+
+
+set.seed(0)
+(resNULL <- run_stuff("ICP", neach = 20, hetero = 1))
+(resINTN <- run_stuff("ICP", neach = 200, hetero = 1))
+(resCORR <- run_stuff("ICP", neach = 200, hetero = 0))
+
+ex_outcomes(resNULL$ICP)
+ex_outcomes(resINTN$ICP)
+ex_outcomes(resCORR$ICP)
+
+## run experiments
+
+run_exps <- function(mc.reps, mc.cores, procs, neach, hetero, ...) {
+  pres <- mclapply(1:mc.reps, function(i) {
+    set.seed(i)
+    run_stuff(procs, neach, hetero, ...)
+  }, mc.cores = mc.cores)
+  ans <- list()
+  for (st in procs) {
+    temp <- lapply(pres, function(v) ex_outcomes(v[[st]]))
+    ans[[st]] <- do.call(rbind, temp)
+  }
+  ans
+}
+
+run_exps(9, 3, c("ICP", "hiddenICP"), 200, 1, alpha = 0.3)
+run_exps(9, 3, c("ICP", "hiddenICP"), 200, 0, alpha = 0.3)
