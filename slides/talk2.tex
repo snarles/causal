@@ -461,6 +461,27 @@ Y|X_{S^{*}} ~\overset{d}{=}~ Y|X_{S^{*}},U=u.
   \end{exampleblock}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Back to the three causal questions}
+  Can ICP help to answer the other two questions?
+  \begin{block}{Infer the graph}
+    We can run ICP for every node with caution. Returns a partially
+    identified graph.
+  \end{block}
+
+  \begin{block}{Infer the causal effect of $X$ on $Y$}
+    Two options:
+    \begin{itemize}
+    \item Treat $X$ as the target variable: \emph{propensity score}.
+    \item Treat $Y$ as the target variable: \emph{outcome regression}.
+    \end{itemize}
+    Okay if $\hat{S}$ itself is invariant. Otherwise ICP may miss important causes, resulting
+    in biased causal effect estimate.
+
+    Idea: maybe we can just use (many) ``minimal'' $S$.
+  \end{block}
+\end{frame}
+
 \end{document}
 %%% Local Variables:
 %%% mode: latex
