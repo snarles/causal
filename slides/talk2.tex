@@ -434,6 +434,15 @@
 \end{frame}
 
 \begin{frame}
+  \frametitle{Robustness of the invariance approach}
+  What is $\cap_\emptyset$?
+  Output given by ICP() function:
+  \begin{center}
+  \includegraphics[scale = 0.5]{../images/ICP_screen.png}
+  \end{center}
+\end{frame}
+
+\begin{frame}
   \frametitle{Splitting purely observational data}
   A big bonus: we can ``create'' an environment by conditioning on a
   variable $U$ that we know precedes $Y$. This is valid because
@@ -481,6 +490,111 @@ Y|X_{S^{*}} ~\overset{d}{=}~ Y|X_{S^{*}},U=u.
     Idea: maybe we can just use (many) ``minimal'' $S$.
   \end{block}
 \end{frame}
+
+\section{Invariance}
+
+\begin{frame}
+  \sectionpage
+\end{frame}
+
+\begin{frame}
+\frametitle{Simulation}
+\begin{center}
+\includegraphics[scale = 0.2]{../images/sim.pdf}
+\end{center}
+All variables normally distributed, linear structural equation model.
+\[
+Y = X_1 + X_2 + \epsilon_Y
+\]
+\end{frame}
+
+\begin{frame}
+\frametitle{Protein Signalling Data}
+\begin{center}
+\includegraphics[scale = 0.3]{../images/cyto_result_cropped.png}
+\end{center}
+\begin{itemize}
+\item Data from Sachs et. al.: 9 interventions.
+\item 11 variables, 8319 total observations.
+\item First step: convert all data to log-scale.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Protein Signalling Data}
+\begin{center}
+\begin{tabular}{c|c|c}
+Intervention & Proteins affected & Sample size\\
+\hline
+1 & PIP2, PIP3, Raf  & 853\\
+2 & PIP2, PIP3, Raf  & 902\\
+3 & PIP2, PIP3, Raf  & 911\\
+4 & PIP2, PIP3, Raf, PKC  & 723\\
+5 & PIP2, PIP3, Raf, PIP2 & 810\\
+6 & PIP2, PIP3, Raf, Erk & 799\\
+7 & PIP2, PIP3, Raf & 848\\
+8 & PKC & 913\\
+9 & PKA & 707
+\end{tabular}
+\end{center}
+\begin{itemize}
+\item For each variable, apply invariant causal prediction algorithm to find its parents.
+\item Use on interventions which don't affect the variable, e.g. for PKC, consider data from interventions 1, 2, 3, 5, 6, 7, 9.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Protein Signalling Data ($\alpha = 0.1$)}
+\begin{center}
+\begin{tabular}{c|c|c}
+Protein & Ground truth & ICP output\\
+\hline
+Raf & PKC & $\cap_\emptyset$\\
+Mek & Raf, PKC &$\cap_\emptyset$\\
+PLCg  & PIP3 &$\cap_\emptyset$\\
+PIP2  &  PIP3 & PIP3 ($p=0.11$)\\
+PIP3  & PLCg & Mek ($p=0.48$)\\
+Erk  & Mek, PKA &$\cap_\emptyset$\\
+Akt  & PKA, Erk(?) &$\cap_\emptyset$\\
+PKA  & PKC(?) &$\cap_\emptyset$\\
+PKC  & PLCg, PIP2 &$\cap_\emptyset$\\
+p38  & PKA, PKC &$\cap_\emptyset$\\
+Jnk &  PKA, PKC& $\cap_\emptyset$
+\end{tabular}
+\end{center}
+hiddenICP() gave many false positives, but it may be due to lack of model reject ($\cap_\emptyset$) functionality.
+\end{frame}
+
+\section{Discussion}
+
+\begin{frame}
+  \sectionpage
+\end{frame}
+
+\begin{frame}
+\frametitle{Discussion}
+\begin{itemize}
+\item Traditional experiments tend to have extremely precise interventions (e.g. set $X$ to 5.3...)
+The `interventions' considered by Peters et al. can be much more general (increase $X$ by 2, add noise to $X$).
+Does this extend the applicability of the method?
+\item Combination of interventional + observational data seems to be much more promising for causal inference than pure observational...
+\item The method can be easily extended to nonlinear models, but it is not as straightforward to relax additive errors.  Could one test invariance of prediction rule rather than invariance of errors?
+\item The method returns a lower bound of the invariant set, $\hat{S} \subset S^*$.  How could one obtain an upper bound of $S^*$ instead?
+\item It is important to extend the method for hidden variables, but the method supplied in the R package does not seem satisfactory.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{References}
+  \begin{itemize}
+  \item Sachs, Karen, et al. ``Causal protein-signaling networks derived from multiparameter single-cell data." \emph{Science} 308.5721 (2005): 523-529.
+  \item Nagarajan, Radhakrishnan, Marco Scutari, and Sophie Lèbre. "Bayesian networks in R." Springer 122 (2013): 125-127.
+  \item Pearl, Judea. \emph{Causality.} Cambridge university press, 2009.
+  \item Morgan, Stephen L., and Christopher Winship. \emph{Counterfactuals and causal inference.} Cambridge University Press, 2014.
+  \item Peters, Jonas, Peter B\"{u}hlmann, and Nicolai Meinshausen. ``Causal inference using invariant prediction: identification and confidence intervals.'' arXiv preprint arXiv:1501.01332 (2015).
+  \end{itemize}
+\end{frame}
+
 
 \end{document}
 %%% Local Variables:

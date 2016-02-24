@@ -30,9 +30,7 @@ colnames(sachs0) <- nms
 for (i in 1:9) colnames(sachs_ints[[i]]) <- nms
 
 for (i in 1:9) sachs_ints[[i]] <- cbind(ExpInd = i, sachs_ints[[i]])
-sachs0 <- cbind(ExpInd = 0, sachs0)
-sachs <- c(list(sachs0), sachs_ints)
-sachs_all <- do.call(rbind, sachs)
+sachs_all <- do.call(rbind, sachs_ints)
 
 ExpInd <- sachs_all[, "ExpInd"]
 sachs_data <- log(sachs_all[, -1])
@@ -54,6 +52,8 @@ interventions[[6]] <- c(glob, "Erk")
 interventions[[7]] <- glob
 interventions[[8]] <- "PKC"
 interventions[[9]] <- "PKA"
+
+View(t(t(prots)))
 
 intmat <- matrix(FALSE, 9, 11)
 colnames(intmat) <- prots
@@ -89,8 +89,8 @@ apply_ICP <- function(prot_no, hidden = FALSE, ...) {
 apply_ICP(1, FALSE, alpha = 0.1)
 apply_ICP(2, FALSE, alpha = 0.1)
 apply_ICP(3, FALSE, alpha = 0.1)
-apply_ICP(4, FALSE, alpha = 0.1)
-apply_ICP(5, FALSE, alpha = 0.1)
+apply_ICP(4, FALSE, alpha = 0.1) # NULL PIP3, Mek??
+apply_ICP(5, FALSE, alpha = 0.1) # NULL Mek??
 apply_ICP(6, FALSE, alpha = 0.1)
 apply_ICP(7, FALSE, alpha = 0.1)
 apply_ICP(8, FALSE, alpha = 0.1)
