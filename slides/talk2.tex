@@ -157,7 +157,7 @@
   \item Given a number of variables and a fixed $Y$, which variables
     causally affect $Y$?
     \begin{itemize}
-    \item Infer the \emph{invariance set}.
+    \item Infer the \emph{invariant set}.
     \end{itemize}
   \item Given a fixed $X$ and a fixed $Y$, what is the causal effect of
     $X$ on $Y$?
@@ -269,6 +269,10 @@
 
 \begin{frame}
   \sectionpage
+\vspace{10em}
+{\small
+* indicates our comments.
+}
 \end{frame}
 
 \begin{frame}
@@ -312,7 +316,7 @@
   \end{split}
   \]
 
-  \begin{alertblock}{Difficulty}
+  \begin{alertblock}{Difficulty*}
     \begin{center}
       \begin{tikzpicture}[node distance = 5mm and 5mm]
         \tikzstyle{main} = [circle, minimum size = 3mm, thick, draw = black!80]
@@ -385,8 +389,8 @@
     H_{0,S,\mathrm{lin}}(\mathcal{E}) \mathrm{~and~} F_{\epsilon} = \mathrm{N}(0,\sigma^2). \\
     H_{0,S,\mathrm{nonlin}}(\mathcal{E}):~&\exists g(X_S,\epsilon),~F_{\epsilon} \mathrm{~s.t.~}
     Y^e = g(X_S^e, \epsilon^e),~\epsilon^e\ldots.\\
-    H_{0,S,\mathrm{additive}}(\mathcal{E}):~&H_{0,S,\mathrm{nonlin}}(\mathcal{E})
-    \mathrm{~and~} g(X_S,\epsilon) \mathrm{~is~additive}.\\
+    H_{0,S,\mathrm{additive}}(\mathcal{E}):~&\exists g(X_S),~F_{\epsilon},
+    \mathrm{~and~} Y^e = g(X_S^e) + \epsilon^e,\ldots.\\
     H_{0,S,\mathrm{hidden}}(\mathcal{E}):~&\epsilon^e \sim
     F_{\epsilon}, ~ \forall e \in
     \mathcal{E},~\mathrm{but}~F_{\epsilon}\mathrm{~can~have~nonzero~mean}.\\
@@ -406,7 +410,7 @@
   In Meinshausen's talk: we don't make false discoveries, even under a
   misspecified model!
 
-  Truth (at least what we believe in):
+  Truth* (at least what we believe in):
 
   \begin{center}
   \begin{tabular}{|c|c|}
@@ -416,16 +420,16 @@
     Intervene on $Y$ (or a missing cause) &
     $\underset{\emptyset}{\bigcap}$ \\
     \hline
-    Non-linear, non-additive &
+    Non-linear, non-additive, and/or heteroskedastic &
     $\underset{\emptyset}{\bigcap}$ \\
     \hline
     Not enough interventions &
-    False positives \\
+    \textcolor{red}{False positives} \\
     \hline
     Small sample size &
     $\emptyset$ \\
     \hline
-    Left out a confounder & $\emptyset$ \\
+    Left out a confounder & $\underset{\emptyset}{\bigcap}$ \\
     \hline
     Left out an unconfounding predictor & okay \\
     \hline
@@ -443,13 +447,13 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Splitting purely observational data}
+  \frametitle{No interventions?}
   A big bonus: we can ``create'' an environment by conditioning on a
   variable $U$ that we know precedes $Y$. This is valid because
 \[
 Y|X_{S^{*}} ~\overset{d}{=}~ Y|X_{S^{*}},U=u.
 \]
-  Note: this statement is true only in the region that both
+  Note*: this statement is true only in the region that both
   conditional distributions are well defined.
 
   \begin{exampleblock}{Creating environment by instrumental variable}
@@ -471,7 +475,7 @@ Y|X_{S^{*}} ~\overset{d}{=}~ Y|X_{S^{*}},U=u.
 \end{frame}
 
 \begin{frame}
-  \frametitle{Back to the three causal questions}
+  \frametitle{Back to the three causal questions*}
   Can ICP help to answer the other two questions?
   \begin{block}{Infer the graph}
     We can run ICP for every node with caution. Returns a partially
