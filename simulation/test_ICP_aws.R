@@ -122,7 +122,7 @@ ex_outcomes <- function(res) {
     pvs <- res$pvalues
     pvs[cfs[1, ]==cfs[2, ]] <- 1
   }
-  names(pvs) <- colnames(X)
+  names(pvs) <- c("X1", "X2", "Z1", "Z2")
   c(modelReject = mr, pvs)
 }
 
