@@ -1,0 +1,137 @@
+apply_ICP(5, FALSE, alpha = 0.1) # PIP3 ~ Jnk, Mek??
+
+ *** 1% complete: tested 2 of 255 sets of variables 
+ *** 2% complete: tested 4 of 255 sets of variables 
+ *** 3% complete: tested 8 of 255 sets of variables 
+ *** 6% complete: tested 16 of 255 sets of variables 
+ *** 13% complete: tested 32 of 255 sets of variables 
+ accepted set of variables 4,10
+ accepted set of variables 1,2,4
+ *** 25% complete: tested 64 of 255 sets of variables 
+ accepted set of variables 2,3,10
+ accepted set of variables 1,4,10
+ accepted set of variables 2,4,10
+ accepted set of variables 3,4,10
+ accepted set of variables 4,5,10
+ accepted set of variables 3,6,10
+ accepted set of variables 4,6,10
+ accepted set of variables 3,7,10
+ accepted set of variables 4,7,10
+ accepted set of variables 1,2,3,4
+ accepted set of variables 1,2,4,5
+ accepted set of variables 1,2,3,6
+ accepted set of variables 1,2,4,6
+ accepted set of variables 1,2,3,7
+ accepted set of variables 1,2,4,7
+ accepted set of variables 1,2,3,10
+ *** 50% complete: tested 128 of 255 sets of variables 
+ accepted set of variables 1,2,4,10
+ accepted set of variables 1,3,4,10
+ accepted set of variables 2,3,4,10
+ accepted set of variables 1,3,5,10
+ accepted set of variables 2,3,5,10
+ accepted set of variables 1,4,5,10
+ accepted set of variables 2,4,5,10
+ accepted set of variables 3,4,5,10
+ accepted set of variables 1,3,6,10
+ accepted set of variables 2,3,6,10
+ accepted set of variables 1,4,6,10
+ accepted set of variables 2,4,6,10
+ accepted set of variables 3,4,6,10
+ accepted set of variables 3,5,6,10
+ accepted set of variables 4,5,6,10
+ accepted set of variables 1,3,7,10
+ accepted set of variables 2,3,7,10
+ accepted set of variables 1,4,7,10
+ accepted set of variables 2,4,7,10
+ accepted set of variables 3,4,7,10
+ accepted set of variables 3,5,7,10
+ accepted set of variables 4,5,7,10
+ accepted set of variables 3,6,7,10
+ accepted set of variables 4,6,7,10
+ accepted set of variables 1,2,3,4,5
+ accepted set of variables 1,2,3,4,6
+ accepted set of variables 1,2,3,5,6
+ accepted set of variables 1,2,4,5,6
+ accepted set of variables 1,2,3,4,7
+ accepted set of variables 1,2,3,5,7
+ accepted set of variables 1,2,4,5,7
+ accepted set of variables 1,2,3,6,7
+ accepted set of variables 1,2,4,6,7
+ accepted set of variables 1,2,3,4,10
+ accepted set of variables 1,2,3,5,10
+ accepted set of variables 1,2,4,5,10
+ accepted set of variables 1,3,4,5,10
+ accepted set of variables 2,3,4,5,10
+ accepted set of variables 1,2,3,6,10
+ accepted set of variables 1,2,4,6,10
+ accepted set of variables 1,3,4,6,10
+ accepted set of variables 2,3,4,6,10
+ accepted set of variables 1,3,5,6,10
+ accepted set of variables 2,3,5,6,10
+ accepted set of variables 1,4,5,6,10
+ accepted set of variables 2,4,5,6,10
+ accepted set of variables 3,4,5,6,10
+ accepted set of variables 1,2,3,7,10
+ accepted set of variables 1,2,4,7,10
+ accepted set of variables 1,3,4,7,10
+ accepted set of variables 2,3,4,7,10
+ accepted set of variables 1,3,5,7,10
+ accepted set of variables 2,3,5,7,10
+ accepted set of variables 1,4,5,7,10
+ accepted set of variables 2,4,5,7,10
+ accepted set of variables 3,4,5,7,10
+ accepted set of variables 1,3,6,7,10
+ accepted set of variables 2,3,6,7,10
+ accepted set of variables 1,4,6,7,10
+ accepted set of variables 2,4,6,7,10
+ accepted set of variables 3,4,6,7,10
+ accepted set of variables 3,5,6,7,10
+ accepted set of variables 4,5,6,7,10
+ accepted set of variables 1,2,3,4,5,6
+ accepted set of variables 1,2,3,4,5,7
+ accepted set of variables 1,2,3,4,6,7
+ accepted set of variables 1,2,3,5,6,7
+ accepted set of variables 1,2,4,5,6,7
+ accepted set of variables 1,2,3,4,5,10
+ accepted set of variables 1,2,3,4,6,10
+ accepted set of variables 1,2,3,5,6,10
+ accepted set of variables 1,2,4,5,6,10
+ accepted set of variables 1,3,4,5,6,10
+ accepted set of variables 2,3,4,5,6,10
+ accepted set of variables 1,2,3,4,7,10
+ accepted set of variables 1,2,3,5,7,10
+ accepted set of variables 1,2,4,5,7,10
+ accepted set of variables 1,3,4,5,7,10
+ accepted set of variables 2,3,4,5,7,10
+ accepted set of variables 1,2,3,6,7,10
+ accepted set of variables 1,2,4,6,7,10
+ accepted set of variables 1,3,4,6,7,10
+ accepted set of variables 2,3,4,6,7,10
+ accepted set of variables 1,3,5,6,7,10
+ accepted set of variables 2,3,5,6,7,10
+ accepted set of variables 1,4,5,6,7,10
+ accepted set of variables 2,4,5,6,7,10
+ accepted set of variables 3,4,5,6,7,10
+ accepted set of variables 1,2,3,4,5,6,7
+ accepted set of variables 1,2,3,4,5,6,10
+ accepted set of variables 1,2,3,4,5,7,10
+ accepted set of variables 1,2,3,4,6,7,10
+ accepted set of variables 1,2,3,5,6,7,10
+ accepted set of variables 1,2,4,5,6,7,10
+ accepted set of variables 1,3,4,5,6,7,10
+ accepted set of variables 2,3,4,5,6,7,10
+ accepted set of variables 1,2,3,4,5,6,7,10
+ Invariant Linear Causal Regression at level 0.1 (including multiplicity correction for the number of variables)
+ 
+       LOWER BOUND  UPPER BOUND  MAXIMIN EFFECT  P-VALUE
+Raf         -0.03         0.14            0.00     0.92
+Mek         -0.22         0.00            0.00     0.18
+PLCg         0.00         0.58            0.00     1.00
+PIP2         0.00         0.56            0.00     1.00
+Erk         -0.10         0.14            0.00     1.00
+Akt         -0.23         0.13            0.00     1.00
+PKA         -0.16         0.04            0.00     1.00
+PKC          0.00         0.00            0.00     1.00
+p38          0.00         0.00            0.00     1.00
+Jnk         -0.17         0.00            0.00     0.19

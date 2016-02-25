@@ -170,8 +170,8 @@ res <- res[1:4, 1:4]
 res2 <- list()
 
 alph <- 0.05
-for (i in 1:dim(res)[1]) {
-  for (j in 1:dim(res)[2]) {
+for (j in 1:dim(res)[2]) {
+  for (i in 1:dim(res)[1]) {
     icr <- data.frame(res[[i, j]]$ICP[1:100, ])
     success <- (icr$modelReject == 0) & 
       (icr$X1 < alph) & (icr$X2 < alph) & 
