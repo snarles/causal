@@ -156,7 +156,7 @@ for (i in 1:length(neachs)) {
   }
 }
 
-saveRDS(res, file = "aws_results01.rds")
+saveRDS(res, file = "aws_results02.rds")
 
 ####
 ##  Interpret results
@@ -165,7 +165,7 @@ saveRDS(res, file = "aws_results01.rds")
 neachs <- c(50, 100, 150, 200)#), 250)#, 300, 350)
 heteros <- c(0, 0.1, 0.3, 0.5)#, 1)
 
-res <- readRDS("aws_results01.rds")
+res <- readRDS("aws_results02.rds")
 res <- res[1:4, 1:4]
 res2 <- list()
 
