@@ -230,19 +230,6 @@
 
 \begin{frame}
   \frametitle{How should we think about the assumptions?}
-  \begin{center}
-    One thing for sure: They are no monsters!
-  \end{center}
-%  \vspace{12em}
-  \begin{figure}
-    \centering
-    \includegraphics[scale = 0.3]{../images/no_monster.png}
-  \end{figure}
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{How should we think about the assumptions?}
   \begin{itemize}
   \item In statistics we make assumptions all the
     time: parametric, independence, function form, etc.
@@ -262,8 +249,21 @@
   \end{itemize}
 
   \begin{center}
-    What if we are willing to make both kinds of assumptions?
+    Peters et al.: What if we are willing to make both kinds of assumptions?
   \end{center}
+\end{frame}
+
+\begin{frame}
+  \frametitle{How should we think about the assumptions?}
+  \begin{center}
+    One thing for sure: They are no monsters!
+  \end{center}
+%  \vspace{12em}
+  \begin{figure}
+    \centering
+    \includegraphics[scale = 0.3]{../images/no_monster.png}
+  \end{figure}
+
 \end{frame}
 
 \section{Invariance}
@@ -444,7 +444,7 @@ Finally, report $\hat{S} = \cap \{S : S \text{ accepted}\}$.
   \hat{S} = \bigcap_{\emptyset}
   \]
   which is not well-defined.
-  
+
   In that case, the ICP() function gives the following ``error'' message:
   \begin{center}
   \includegraphics[scale = 0.4]{../images/ICP_screen.png}
@@ -577,8 +577,8 @@ Homoskedastic if $h = 0$.
 Correct model is not even identifiable if given purely observational data!
 \begin{center}
 \begin{tabular}{cc}
-Truth & Reconstruction\\ 
-\includegraphics[scale = 0.3]{../images/sim.pdf} & 
+Truth & Reconstruction\\
+\includegraphics[scale = 0.3]{../images/sim.pdf} &
 \includegraphics[scale = 0.3]{../images/sim_bnlearn.pdf}\\
 &  ($n = 10000$)
 \end{tabular}
@@ -594,7 +594,7 @@ How does invariant prediction fare?
 \begin{center}
 \fboxsep=1.5mm \fboxrule=0.3mm
 %\textcolor{green}{\rule{0.3cm}{0.3cm}}
-%\textbf{\textcolor{green}{success}}, \textbf{\textcolor{red}{type I error}}, \textbf{model reject  ($\cap_\emptyset$)}, 
+%\textbf{\textcolor{green}{success}}, \textbf{\textcolor{red}{type I error}}, \textbf{model reject  ($\cap_\emptyset$)},
 \fcolorbox{black}{green}{\textcolor{green}{1}} = success,\hspace{0.05in}
 \fcolorbox{black}{red}{\textcolor{red}{2}} = Type I error,\hspace{0.05in}
 \fcolorbox{black}{black}{3} = $\cap_\emptyset$,\hspace{0.05in}
