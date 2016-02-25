@@ -115,10 +115,12 @@ ex_outcomes <- function(res) {
   if ("modelReject" %in% names(res)) {
     mr <-   res$modelReject
   }
+  cfs <- res$ConfInt
   if (!is.na(mr) && mr) {
     pvs <-   res$pvalues + NA
   } else {
     pvs <- res$pvalues
+    pvs[cfs[1, ]==cfs[2, ]] <- 1
   }
   names(pvs) <- colnames(X)
   c(modelReject = mr, pvs)
@@ -141,8 +143,8 @@ run_exps <- function(mc.reps, mc.cores, procs, neach, hetero, ...) {
 
 mcc <- 40
 mc.reps <- 120
-neachs <- c(50, 100, 150, 200, 250, 300, 350)
-heteros <- c(0, 0.1, 0.3, 0.5, 1)
+neachs <- c(50, 100, 150, 200)#), 250)#, 300, 350)
+heteros <- c(0, 0.1, 0.3, 0.5)#, 1)
 
 res <- array(list(NULL), c(length(neachs), length(heteros)))
 
