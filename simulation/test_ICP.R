@@ -69,13 +69,19 @@ del.mus <- rbind(0, eye(5)[c(1, 2, 4, 5), ])
 del.vars <- 0 * del.mus
 
 ## Demo run
-ExpInd <- rep(1:5, each = 1000)
-dat <- generate_manipulations(coefmatrix, mus, vars, del.mus, del.vars, ExpInd, hetero = 0)
-dat <- generate_manipulations(coefmatrix, mus, vars, del.mus, del.vars, ExpInd, hetero = 1)
+neach <- 20000
+ExpInd <- rep(1:5, each = neach)
+hetero <- 0
+dat <- generate_manipulations(coefmatrix, mus, vars, del.mus, del.vars, ExpInd, hetero = hetero)
 Y <- dat[, Yind]
 X <- dat[, -Yind]
 (resICP <- ICP(X, Y, ExpInd))
-(resH <- hiddenICP(X, Y, ExpInd))
+dat <- generate_manipulations(coefmatrix, mus, vars, del.mus, del.vars, rep(1, 5 * neach), hetero = hetero)
+res <- hc(data.frame(dat), restart = 10)
+graphviz.plot(res)
+#(resH <- hiddenICP(X, Y, ExpInd))
+
+
 
 ####
 ##  Simulation code

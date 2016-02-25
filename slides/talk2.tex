@@ -566,9 +566,23 @@ Y = X_1 + X_2 + \epsilon_Y.
 \]
 Adjustable heterosketasticity:
 \[
-\epsilon_Y \sim N(0, \sigma^2(1 + \alpha (X_1 + X_2))^2).
+\epsilon_Y \sim N(0, \sigma^2(1 + h (X_1 + X_2))^2).
 \]
-Homoskedastic if $\alpha = 0$.
+Homoskedastic if $h = 0$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Causal discovery approach}
+Correct model is not even identifiable if given purely observational data!
+\begin{center}
+\begin{tabular}{cc}
+Truth & Reconstruction\\ 
+\includegraphics[scale = 0.3]{../images/sim.pdf} & 
+\includegraphics[scale = 0.3]{../images/sim_bnlearn.pdf}\\
+&  ($n = 10000$)
+\end{tabular}
+\end{center}
+How does invariant prediction fare?
 \end{frame}
 
 \begin{frame}
