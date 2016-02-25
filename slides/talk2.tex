@@ -413,36 +413,54 @@
     Y^2 \\
   \end{pmatrix} =
   \begin{pmatrix}
-    X^1 \\
-    X^2 \\
+    X^1_S \\
+    X^2_S \\
   \end{pmatrix}
-  \gamma +
+  \gamma_S +
   \begin{pmatrix}
     \epsilon^1 \\
     \epsilon^2 \\
   \end{pmatrix}
   \]
+For each subset $S \subset\{1,\hdots, p\}$:
   \begin{enumerate}
-  \item Estimate $\gamma$ from the pooled data.
+  \item Estimate $\gamma_S$ from the pooled data.
   \item Compare distributions of the residuals $\hat{\epsilon}^1$ and
     $\hat{\epsilon}^2$. When Gaussian, compare their means (equal to
-    $0$ if no hidden variable) and variances and apply Bonferroni's correction.
+    $0$ if no hidden variable) and variances. % and apply Bonferroni's correction.
+  \item If you accept that $\hat{\epsilon}^1$ and $\hat{\epsilon}^2$ have the same distribution at level $\alpha$, $S$ is accepted as an invariant set.
   \end{enumerate}
+
+Finally, report $\hat{S} = \cap \{S : S \text{ accepted}\}$.
 
   This algorithm can be easily extended to non-linear models.
 \end{frame}
 
 \begin{frame}
-  \frametitle{Robustness of the invariance approach}
-  In Meinshausen's talk: we don't make false discoveries, even under a
+  \frametitle{Model rejection}
+  What if \emph{all subsets are rejected}? Then
+  \[
+  \hat{S} = \bigcap_{\emptyset}
+  \]
+  which is not well-defined.
+  
+  In that case, the ICP() function gives the following ``error'' message:
+  \begin{center}
+  \includegraphics[scale = 0.4]{../images/ICP_screen.png}
+  \end{center}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Robustness of the invariance approach*}
+From Meinshausen's talk: we don't make false discoveries, even under a
   misspecified model!
 
-  Truth* (at least what we believe in):
-
+%Truth*: (at least what we believe)
   \begin{center}
   \begin{tabular}{|c|c|}
     \hline
-    Things can go wrong & ICP's behavior \\
+    \textbf{Issues} & \textbf{ICP's behavior} \\
     \hline
     Intervene on $Y$ (or a missing cause) &
     $\underset{\emptyset}{\bigcap}$ \\
@@ -464,14 +482,6 @@
   \end{center}
 \end{frame}
 
-\begin{frame}
-  \frametitle{Robustness of the invariance approach}
-  What is $\cap_\emptyset$?
-  Output given by ICP() function:
-  \begin{center}
-  \includegraphics[scale = 0.5]{../images/ICP_screen.png}
-  \end{center}
-\end{frame}
 
 \begin{frame}
   \frametitle{Identifiability}
