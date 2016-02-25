@@ -155,3 +155,61 @@ for (i in 1:length(neachs)) {
 }
 
 saveRDS(res, file = "aws_results01.rds")
+
+####
+##  Interpret results
+####
+
+neachs <- c(50, 100, 150, 200)#), 250)#, 300, 350)
+heteros <- c(0, 0.1, 0.3, 0.5)#, 1)
+
+res <- readRDS("aws_results01.rds")
+res <- res[1:4, 1:4]
+res2 <- list()
+
+alph <- 0.05
+for (i in 1:dim(res)[1]) {
+  for (j in 1:dim(res)[2]) {
+    icr <- data.frame(res[[i, j]]$ICP[1:100, ])
+    success <- (icr$modelReject == 0) & 
+      (icr$X1 < alph) & (icr$X2 < alph) & 
+      (icr$Z1 > alph) & (icr$Z2 > alph)
+    failure <- (icr$modelReject == 0) & 
+      (pmin(icr$Z1, icr$Z2) < alph)
+    reject <- icr$modelReject==1
+    res2 <- c(res2, 
+              list(c(n = neachs[i] * 5,
+                     h = heteros[j],
+                success = sum(success), 
+                failure = sum(failure), 
+                reject = sum(reject),
+                nullset = sum(!success & !failure & !reject))))
+  }
+}
+res2 <- do.call(rbind, res2)
+View(res2)
+
+###
+#  Draw the thing
+###
+cc <- c("green", "red", "black", "white")
+
+par(mar = c(0, 0, 0, 0))
+lmat <- matrix(0, 5, 5)
+lmat[1, ] <- 1:5
+lmat[, 1] <- c(1, 6:9)
+lmat[-1, -1] <- 10:25
+layout(lmat)
+plot(NA, NA, axes = FALSE, ann = FALSE, xlim = c(-1, 1), ylim = c(-1, 1))
+for (i in 1:4) {
+  plot(NA, NA, axes = FALSE, ann = FALSE, xlim = c(-1, 1), ylim = c(-1, 1))
+  text(0, 0, paste0("h=", heteros[i]), cex = 3)
+}
+for (i in 1:4) {
+  plot(NA, NA, axes = FALSE, ann = FALSE, xlim = c(-1, 1), ylim = c(-1, 1))
+  text(0, 0, paste0("n=", neachs[i]*5), cex = 3)
+}
+
+for (i in 1:16) {
+  pie(res2[i, 3:6], labels = rep("", 4), col = cc)
+}

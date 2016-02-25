@@ -83,6 +83,7 @@
 \usepackage{array}
 \usepackage{tikz}
 \usepackage{soul}
+\usepackage{xcolor}
 \usetikzlibrary{shapes.geometric, arrows, positioning, fit}
 \usepackage[latin1]{inputenc}
 \newcommand{\xmark}{\textcolor{red}{\text{\sffamily X}}}
@@ -110,9 +111,9 @@
 \definecolor{color3}{RGB}{0,0,128}
 \definecolor{color4}{RGB}{70,13,128}
 
+
 \newcommand\independent{\protect\mathpalette{\protect\independenT}{\perp}}
 \def\independenT#1#2{\mathrel{\rlap{$#1#2$}\mkern2mu{#1#2}}}
-
 % tikz stufff
 
 
@@ -583,6 +584,22 @@ Truth & Reconstruction\\
 \end{tabular}
 \end{center}
 How does invariant prediction fare?
+\end{frame}
+
+\begin{frame}
+\frametitle{Invariant prediction ICP()}
+\begin{center}
+\includegraphics[scale = 0.4]{../images/pies.pdf}
+\end{center}
+\begin{center}
+\fboxsep=1.5mm \fboxrule=0.3mm
+%\textcolor{green}{\rule{0.3cm}{0.3cm}}
+%\textbf{\textcolor{green}{success}}, \textbf{\textcolor{red}{type I error}}, \textbf{model reject  ($\cap_\emptyset$)}, 
+\fcolorbox{black}{green}{\textcolor{green}{1}} = success,\hspace{0.05in}
+\fcolorbox{black}{red}{\textcolor{red}{2}} = Type I error,\hspace{0.05in}
+\fcolorbox{black}{black}{3} = $\cap_\emptyset$,\hspace{0.05in}
+\fcolorbox{black}{white}{\textcolor{white}{4}} = $\emptyset$.
+\end{center}
 \end{frame}
 
 \begin{frame}
