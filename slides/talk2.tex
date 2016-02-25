@@ -562,8 +562,13 @@ Y|X_{S^{*}} ~\overset{d}{=}~ Y|X_{S^{*}},U=u.
 \end{center}
 All variables normally distributed, linear structural equation model.
 \[
-Y = X_1 + X_2 + \epsilon_Y
+Y = X_1 + X_2 + \epsilon_Y.
 \]
+Adjustable heterosketasticity:
+\[
+\epsilon_Y \sim N(0, \sigma^2(1 + \alpha (X_1 + X_2))^2).
+\]
+Homoskedastic if $\alpha = 0$.
 \end{frame}
 
 \begin{frame}
