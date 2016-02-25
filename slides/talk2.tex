@@ -647,7 +647,7 @@ Raf & PKC & $\cap_\emptyset$\\
 Mek & Raf, PKC &$\cap_\emptyset$\\
 PLCg  & PIP3 &$\cap_\emptyset$\\
 PIP2  &  PIP3 & PIP3 ($p=0.11$)\\
-PIP3  & PLCg & Mek ($p=0.48$)\\
+PIP3  & PLCg & Mek ($p=0.18$), Jnk ($p = 0.19$)\\
 Erk  & Mek, PKA &$\cap_\emptyset$\\
 Akt  & PKA, Erk(?) &$\cap_\emptyset$\\
 PKA  & PKC(?) &$\cap_\emptyset$\\
@@ -658,6 +658,29 @@ Jnk &  PKA, PKC& $\cap_\emptyset$
 \end{center}
 hiddenICP() gave many false positives, but it may be due to lack of model reject ($\cap_\emptyset$) functionality.
 \end{frame}
+
+\begin{frame}
+\frametitle{Protein Signalling Data ($\alpha = 0.1$)}
+A closer look at the the PIP3 case: a correct invariant set includes PLCg(3) but not Akt(5) or PIP2(4).
+Did any correct set get accepted??
+\begin{center}
+\begin{tabular}{cc}
+accepted set of variables 4,10& X\\
+ accepted set of variables 1,2,4 &X\\
+ accepted set of variables 2,3,10 & correct\\ 
+ accepted set of variables 1,4,10& X\\
+ accepted set of variables 2,4,10& X\\
+ accepted set of variables 3,4,10& correct\\
+ accepted set of variables 4,5,10& X\\
+ accepted set of variables 3,6,10& correct\\
+ accepted set of variables 4,6,10& X\\
+ accepted set of variables 3,7,10& correct\\
+ accepted set of variables 4,7,10& X\\
+ $\vdots$ & $\vdots$
+\end{tabular}
+\end{center}
+\end{frame}
+
 
 \section{Discussion}
 
