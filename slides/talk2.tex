@@ -272,6 +272,7 @@
   \sectionpage
 \vspace{10em}
 {\small
+This section presents the Peters et al. paper;
 * indicates our comments.
 }
 \end{frame}
@@ -309,7 +310,7 @@
   satisfies the assumption.
   \[
   \begin{split}
-    H_{0,\gamma,S}(\mathcal{E}):~&\gamma_k = 0~\mathrm{if}~k \in S,~and~
+    H_{0,\gamma,S}(\mathcal{E}):~&\gamma_k = 0~\mathrm{if}~k \notin S,~and~
     \exists F_{\epsilon} \mathrm{~such~that~for~all~} e \in \mathcal{E}, \\
     &Y^e = X^e \gamma + \epsilon^e,~\epsilon^e \sim F_{\epsilon},~ \epsilon^e \independent X^e_{S}.\\
     H_{0,S}(\mathcal{E}):~&\exists \gamma \mathrm{~such~that~}
@@ -470,17 +471,19 @@ From Meinshausen's talk: we don't make false discoveries, even under a
     $\underset{\emptyset}{\bigcap}$ \\
     \hline
     Not enough interventions &
-    \textcolor{red}{False positives} \\
+    \textcolor{red}{False positives}$^1$ \\
     \hline
     Small sample size &
     $\emptyset$ \\
     \hline
     Left out a confounder & $\underset{\emptyset}{\bigcap}$ \\
     \hline
-    Left out an unconfounding predictor & okay \\
+    Left out an unconfounding predictor & okay  \\
     \hline
+    Misspecified noise model & \textcolor{red}{False positives}$^2$\\\hline
   \end{tabular}
   \end{center}
+  \small{1: in the causal sense; 2: in the invariant prediction sense; both 1 and 2 were brought to our attention by Lucas Janson during the talk.}
 \end{frame}
 
 
@@ -499,6 +502,7 @@ From Meinshausen's talk: we don't make false discoveries, even under a
       probability $1$ (when parameters $\gamma$ is drawn from some distribution).
     \end{enumerate}
   \end{block}
+  Note*: Identifiability connects the invariant prediction and causal interpretation of $S^*$.
 \end{frame}
 
 \begin{frame}
@@ -550,10 +554,14 @@ Y|X_{S^{*}} ~\overset{d}{=}~ Y|X_{S^{*}},U=u.
   \end{block}
 \end{frame}
 
-\section{Invariance}
+\section{Examples}
 
 \begin{frame}
   \sectionpage
+  \vspace{10em}
+{\small
+This section and the following section are due to Z and Z.  Code can be found in \tt{https://github.com/snarles/causal}.
+}
 \end{frame}
 
 \begin{frame}
@@ -697,7 +705,7 @@ Does this extend the applicability of the method?
 \item Combination of interventional + observational data seems to be much more promising for causal inference than pure observational...
 \item The method can be easily extended to nonlinear models, but it is not as straightforward to relax additive errors.  Could one test invariance of prediction rule rather than invariance of errors?
 \item The method returns a lower bound of the invariant set, $\hat{S} \subset S^*$.  How could one obtain an upper bound of $S^*$ instead?
-\item It is important to extend the method for hidden variables, but the method supplied in the R package does not seem satisfactory.
+\item It is important to extend the method for hidden variables, but the method supplied in the R package does not have the robustness properties of ICP().
 \end{itemize}
 \end{frame}
 
