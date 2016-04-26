@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="drawing2legend.eps">
+   sodipodi:docname="drawing2legend.svg">
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -789,13 +789,13 @@
        id="rect11433"
        width="842.02087"
        height="140.02086"
-       x="20.189562"
+       x="54.18956"
        y="1013.7017" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot11435"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="translate(-102,1190.2677)"><flowRegion
+       transform="translate(-68,1190.2677)"><flowRegion
          id="flowRegion11437"><rect
            id="rect11439"
            width="241.24998"
@@ -817,7 +817,7 @@
        xml:space="preserve"
        id="flowRoot11455"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="translate(97.1875,1349.4927)"><flowRegion
+       transform="translate(131.1875,1349.4927)"><flowRegion
          id="flowRegion11457"><rect
            id="rect11459"
            width="384.80002"
@@ -829,7 +829,7 @@
        xml:space="preserve"
        id="flowRoot11463"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="translate(-24.84375,1306.3447)"><flowRegion
+       transform="translate(9.15625,1306.3447)"><flowRegion
          id="flowRegion11465"><rect
            id="rect11467"
            width="523.55005"
@@ -841,7 +841,7 @@
        xml:space="preserve"
        id="flowRoot11463-9"
        style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       transform="translate(-26.84375,1366.3447)"><flowRegion
+       transform="translate(7.15625,1366.3447)"><flowRegion
          id="flowRegion11465-2"><rect
            id="rect11467-1"
            width="523.55005"
@@ -851,45 +851,45 @@
          id="flowPara11469-4"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Khmer OS;-inkscape-font-specification:Khmer OS">Incorrect (ICP)</flowPara></flowRoot>    <path
        style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Lstart);marker-end:none"
-       d="m 822.81082,1057.6571 -60,0"
+       d="m 856.81082,1057.6571 -60,0"
        id="path4047-2-2-9-0-2"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:5.8775053;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:none;marker-end:none"
-       d="m 812.32245,1057.5654 -56.69424,0"
+       d="m 846.32245,1057.5654 -56.69424,0"
        id="path4047-2-2-2-4-7"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#00ff00;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Lstartr);marker-end:none"
-       d="m 816.86346,1057.5692 -60,0"
+       d="m 850.86346,1057.5692 -60,0"
        id="path4047-2-0-7-6"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend-6v)"
-       d="m 758,1116.3622 60,0"
+       d="m 792,1116.3622 60,0"
        id="path11534"
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="m 773.3934,1097.9637 10,10"
+       d="m 807.3934,1097.9637 10,10"
        id="path11408-8-0"
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
-       d="m 783.3934,1097.9637 -10,10"
+       d="m 817.3934,1097.9637 -10,10"
        id="path11410-4-9"
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend-6-6)"
-       d="m 298,1054.3622 60,0"
+       d="m 332,1054.3622 60,0"
        id="path11787"
        inkscape:connector-curvature="0" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 4;stroke-dashoffset:0;marker-end:url(#Arrow2Lend-6-6)"
-       d="m 298,1116.3622 60,0"
+       d="m 332,1116.3622 60,0"
        id="path11787-6"
        inkscape:connector-curvature="0" />
   </g>
