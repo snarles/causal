@@ -1,8 +1,8 @@
-\title{Comment on Jonas et. al paper}
+\title{Comment on ``Causal inference using invariant prediction''}
 \author{Charles Zheng and Qingyuan Zhao}
 \date{\today}
 
-\documentclass[12pt]{article} 
+\documentclass{article}
 
 % packages with special commands
 \usepackage{amssymb, amsmath}
@@ -14,6 +14,7 @@
 \usepackage{graphicx}
 \usepackage{mathtools}
 \usepackage{csquotes}
+\usepackage[authoryear]{natbib}
 \definecolor{grey}{rgb}{0.5,0.5,0.5}
 
 \begin{document}
@@ -29,26 +30,48 @@
 \newcommand{\Vol}{\text{Vol}}
 \newcommand{\comm}[1]{}
 
-Causal inference using data from both \emph{observational}
-and \emph{interventional} settings is a promising idea.  Jonas et
-al. define \emph{invariant prediction sets} which can be detected
-using such data, which can therefore be used to identify part of the
-causal structure.  The concept of invariant prediction is quite
-general, going beyond a specific modeling assumption.  However, the
-bulk of the paper is devoted linear structual models; furthermore, the
-specific hypothesis testing approach cannot be easily generalized
-beyond the linear case.  We evaluated their approach using a dataset
-which is well-known in the graphical models literature: the Sachs
-et. al. protein signaling network data.  Sachs et al.  collected a
-combination of observational and interventional data in order to infer
+We congratulate the authors on this thought-provoking
+paper. Statistical inference of causation has been throughtly studied
+in randomized experiments or observational studies, but is seldomly
+considered when data from both \emph{observational}
+and \emph{interventional} settings are available. Peters et
+al.\ made an important contribution by tackling this problem with
+their notion of invariant causal prediction (ICP).
+
+At first look, the ICP is just a corollary of structural
+equation models, but we think its value might be much more
+substantial. Given a response variable, ICP can discover its invariant
+prediction sets, in some sense its
+``causes''. \citet{holland1986statistics}, \citet{dawid2000causal},
+\citet{pearl2000causality}, among many others, suggest that we should
+distinguish between the problem of ``effects of causes'' and ``causes
+of effects''. As argued by \citet{robins2000causal} and
+\citet{pearl2000causality}, a counterfactual language is usually
+required to study the latter problem. Does ICP enable us to study
+``causes of effects'' without counterfactuals? Although ICP is
+motivated by structural models which naturally encondes
+counterfactuals, ICP seems not to involve any counterfactual term. We
+hope the authors can answer this question in the rejoinder.
+
+We think the concept of invariant prediction is quite
+general and goes beyond a specific modeling assumption. Unfortunately,
+the bulk of the paper is devoted to linear model with Gaussian
+noise. Generalizations of ICP to more flexible models (GLMs,
+nonparametric models, non-additive models) would be extremely useful
+in practice.
+
+We evaluated ICP on a protein signaling network dataset of
+\citet{sachs2005causal} using the software provided by the authors.
+\citet{sachs2005causal} collected a
+combination of observational and interventional data to infer
 the causal structure of a network consisting of 11 proteins.  Using
-their own method, Sachs et. al. reported recovering 15 of the known
-directed arcs (colored black in Figure 2.)  Sachs et al. also
+their own method, \citet{sachs2005causal} reportedly recovered 15 of
+the known directed arcs (colored black in Figure \ref{fig:sachs})  and
 discovered two new putative links (not shown), and missed 3 of the
-interactions which were known in the literature (dashed lines.) We
-used ICP to recover part of the graph structure, taking in turn each
-of the 11 variables as the response of interest and selecting the
-subset of environments in which the reponse was not perturbed.  The
+interactions which were known in the literature (dashed lines). We
+tried to use ICP to recover part of the graph structure, taking in
+turn each of the 11 variables as the response of interest and
+selecting the subset of environments in which the reponse was not perturbed.  The
 invariant set for each variable can be identified as the parents of
 that variable in the graph.  However, for 9 of the 11 proteins, ICP
 rejected the model and reported no discoveries.  For the protein PIP2,
@@ -56,23 +79,27 @@ ICP correctly identified one parent, PIP3.  For the protein PIP3, ICP
 reported Mek and Jnk as part of the invariant set, but these do not
 match any interactions known in the literature.
 
-While the linear model may be overly restrictive, it is worth further
-considering the general idea of combining causal and statistical
-modeling assumptions in order to draw conclusions. [[for Qingyuan to write.]]
-
-\subsection*{References}
-
-Sachs, Karen, et al. ``Causal protein-signaling networks derived from
-multiparameter single-cell data.'' Science 308.5721 (2005): 523-529.
-
-\begin{figure}[h]
+\begin{figure}[t]
 \centering
 \includegraphics[scale = 0.3]{drawing2legend.eps}
 \caption{Application of ICP procedure to recover protein signaling network.
-ICP recovered one arrow correctly and two incorrent arrows: no other discoveries were reported.}
+ICP discovered one arrow correctly and two incorrent arrows. No other
+discoveries were reported.}
+\label{fig:sachs}
 \end{figure}
 
-\begin{figure}[h]
+The overly-restrictive linear model could be the reason for the poor
+performance of ICP on this dataset. The authors take this as a
+robustness property, but it also means ICP is very sensitive to
+modeling assumption. A small departure from the linear
+model can result in no causal discovery. We did not find in the paper a
+summary of the robustness of ICP, so we tried our best to outline in
+Table \ref{tab:icp} the behavior of linear ICP when some of its
+assumptions are not met. [[Charles, can you explain the
+{\color{red} behaviors} in the table?]] The authors are welcomed to
+comment on the table and point out any inconsistency if there is any.
+
+\begin{table}[h]
 \centering
   \begin{tabular}{|c|c|}
     \hline
@@ -96,12 +123,15 @@ ICP recovered one arrow correctly and two incorrent arrows: no other discoveries
     \hline
     Misspecified noise model$^2$ & \textcolor{red}{False positives}\\\hline
   \end{tabular}
-\caption{Robustness properties of ICP procedure.  Under certain types of model misspecifiaction,
-ICP will return a ``model reject'', denoted by $\cup_{\emptyset}$, rather than produce false positives.}
-\end{figure}
+\caption{Robustness properties of ICP procedure.  Under certain types
+  of model misspecifiaction, ICP will return a ``model reject'',
+  denoted by $\cap_{\emptyset}$ (i.e.\ all subsets including the empty
+  set are not invariant), rather than produce false positives.}
+\label{tab:icp}
+\end{table}
+
+\bibliographystyle{plainnat}
+\bibliography{ref}
 
 
 \end{document}
-
-
-
