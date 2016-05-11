@@ -1,5 +1,5 @@
 \title{Comment on ``Causal inference using invariant prediction''}
-\author{Charles Zheng and Qingyuan Zhao}
+\author{Trevor Hastie, Robert Tibshirani, Qingyuan Zhao, Charles Zheng}
 \date{\today}
 
 \documentclass{article}
@@ -31,8 +31,8 @@
 \newcommand{\comm}[1]{}
 
 We congratulate the authors on this thought-provoking
-paper. Statistical inference of causation has been throughtly studied
-in randomized experiments or observational studies, but is seldomly
+paper. Statistical inference of causality has been thoroughly studied
+in randomized experiments or observational studies, but is seldom
 considered when data from both \emph{observational}
 and \emph{interventional} settings are available. Peters et
 al.\ made an important contribution by tackling this problem with
@@ -49,14 +49,14 @@ of effects''. As argued by \citet{robins2000causal} and
 \citet{pearl2000causality}, a counterfactual language is usually
 required to study the latter problem. Does ICP enable us to study
 ``causes of effects'' without counterfactuals? Although ICP is
-motivated by structural models which naturally encondes
+motivated by structural models which naturally encodes
 counterfactuals, ICP seems not to involve any counterfactual term. We
 hope the authors can answer this question in the rejoinder.
 
 We think the concept of invariant prediction is quite
 general and goes beyond a specific modeling assumption. Unfortunately,
-the bulk of the paper is devoted to linear model with Gaussian
-noise. Generalizations of ICP to more flexible models (GLMs,
+most of this paper is devoted to the linear model with noise and
+generalizations of ICP to more flexible models (GLMs,
 nonparametric models, non-additive models) would be extremely useful
 in practice.
 
@@ -70,7 +70,7 @@ known directed arcs (colored black in Figure \ref{fig:sachs}) and
 discovered two new putative links (not shown), and missed 3 of the
 interactions which were known in the literature (dashed lines). We
 tried to use ICP to recover part of the graph structure: ICP
-discovered one arrow correctly and two incorrent arrows. No other
+discovered one arrow correctly and two incorrect arrows. No other
 discoveries were reported.
 
 \begin{figure}[t]
@@ -78,7 +78,7 @@ discoveries were reported.
 \includegraphics[scale = 0.3]{drawing2legend.eps}
 \caption{Application of ICP procedure to recover protein signaling network,
 taking in turn each of the 11 variables as the response of interest
-and selecting the subset of environments in which the reponse was not
+and selecting the subset of environments in which the response was not
 perturbed.  The invariant set for each variable can be identified as
 the parents of that variable in the graph.  For 9 of the 11 proteins,
 ICP rejected the model and reported no discoveries.  For the protein
@@ -91,13 +91,12 @@ do not match any interactions known in the literature.}
 The overly-restrictive linear model could be the reason for the poor
 performance of ICP on this dataset. The authors take this as a
 robustness property, but it also means ICP is very sensitive to
-modeling assumption. A small departure from the linear
+modeling assumptions. A small departure from the linear
 model can result in no causal discovery. We did not find in the paper a
-summary of the robustness of ICP, so we tried our best to outline in
+summary of the robustness of ICP, so we tried to outline in
 Table \ref{tab:icp} the behavior of linear ICP when some of its
-assumptions are not met. [[Charles, can you explain the
-{\color{red} behaviors} in the table?]] The authors are welcomed to
-comment on the table and point out any inconsistency.
+assumptions are not met. We would welcome the authors' comments on
+this summary.
 
 
 \begin{table}[h]
@@ -109,7 +108,7 @@ comment on the table and point out any inconsistency.
     a) & Intervene on $Y$ (or a missing cause) &
     $\underset{\emptyset}{\bigcap}$ \\
     \hline
-    b) & Non-linear, non-additive, and/or heteroskedastic &
+    b) & Non-linear, non-additive, and/or heteroscedastic &
     $\underset{\emptyset}{\bigcap}$ \\
     \hline
     c) & Not enough interventions &
@@ -124,12 +123,12 @@ comment on the table and point out any inconsistency.
     \hline
     g) & Misspecified noise model$^2$ & \textcolor{red}{False positives}\\\hline
   \end{tabular}
-\caption{Robustness properties of ICP procedure.  Under certain types
-  of model misspecifiaction, ICP will return a ``model reject'',
+\caption{Robustness properties of the ICP procedure.  Under certain types
+  of model misspecification, ICP will return a ``model reject'',
   denoted by $\cap_{\emptyset}$ (i.e.\ all subsets including the empty
   set are not invariant), rather than produce false positives.
 (a) when interventions are performed on $Y$, no predictor set can be invariant;
-(b) when the homoskedastic linear model is misspecified, the prediction rule
+(b) when the homoscedastic linear model is misspecified, the prediction rule
 will vary depending on the range of the predictors; (c) without enough interventions,
 the set of causal parents is unidentifiable, and non-causal invariant sets exist;
 (d) when the sample size is small, the hypothesis test for invariance has insufficient power to reject the invariance null,
