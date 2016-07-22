@@ -47,35 +47,35 @@
 \date{}
 \maketitle
 
-We congratulate the authors on this thought-provoking
+We congratulate Peters and his colleagues on this thought-provoking
 paper. Statistical inference of causality has been thoroughly studied
-in randomized experiments or observational studies, but is seldom
+in randomized experiments or observational studies but is seldom
 considered when data from both \emph{observational}
-and \emph{interventional} settings are available. Peters et
-al.\ made an important contribution by tackling this problem with
+and \emph{interventional} settings are available. Peters and his colleagues
+have made an important contribution by tackling this problem with
 their notion of invariant causal prediction (ICP).
 
 At first look, ICP is a corollary of structural
 equation models, but we think its value might be much more
 substantial. \citet{dawid2000causal} noticed that causal researchers
-are predominately Laplacian determinists, for who
+are predominately Laplacian determinists, for whom 
 ``nothing short of a functional model relating outputs to inputs will do
-as a description of nature''. Peters et al.\ provide an alternative
+as a description of nature''. Peters and his colleagues provide an alternative
 approach that defines causality by \emph{predictability} instead
-of \emph{determinism}, two different concepts that are not logically
+of \emph{determinism}: two different concepts that are not logically
 connected \citep{hoefer2016causal}. In light of
 \citet{breiman2001statistical}'s two cultures of statistics,
 determinism roughly corresponds to the data modeling culture and
 predictability is the spirit of Breiman's algorithmic modeling
 culture.
 
-Bearing this difference in mind, Peters et al.\ do not take a
+Bearing this difference in mind, Peters and his colleagues do not take a
 downright predictability approach in this paper. Rather, they consider
 two types of assumptions: invariant prediction in order to define
 causality and deterministic modeling assumptions such as
 linearity. This hybrid perspective becomes clear when comparing the
-assumptions in Equation (4) to (24), (28) or (31). As a consequence,
-ICP is able to make causal discovery only when the modeling
+assumptions in Equation (4) with those of expressions (24), (28) or (31). As a consequence,
+ICP can make causal discoveries only when the modeling
 assumptions are correct. % For example, a small departure from the linear
 % model can result in no causal discovery.
 The authors take this as a
@@ -146,9 +146,9 @@ overly-restrictive linear model.
 taking in turn each of the 11 variables as the response of interest
 and selecting the subset of environments in which the response was not
 perturbed.  The invariant set for each variable can be identified as
-the parents of that variable in the graph.  For 9 of the 11 proteins,
-ICP rejected the model and reported no discoveries.  For the protein
-PIP2, ICP correctly identified one parent, PIP3.  For the protein
+the parents of that variable in the graph.  For nine of the 11 proteins,
+ICP rejected the model and reported no discoveries;  for protein
+PIP2, ICP correctly identified one parent, PIP3; for protein
 PIP3, ICP reported Mek and Jnk as part of the invariant set, but these
 do not match any interactions known in the literature.}
 \label{fig:sachs}
